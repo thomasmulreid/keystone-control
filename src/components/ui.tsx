@@ -156,3 +156,28 @@ export function Td({
     </td>
   );
 }
+
+/* ------------------------------------------------------------------
+   A declared-but-unconnected source.
+
+   Renders where the missing data WOULD have gone, so the gap is
+   visible in context rather than only on a settings page. An absent
+   section looks identical to "there is no problem here"; this does
+   not.
+   ------------------------------------------------------------------ */
+export function SourceGap({
+  label, mcp, whenMissing,
+}: { label: string; mcp: string | null; whenMissing: string }) {
+  return (
+    <div className="card border-dashed p-4">
+      <div className="flex items-center gap-2">
+        <span aria-hidden className="h-2 w-2 rounded-full bg-line-strong" />
+        <h3 className="text-[13px] font-semibold">{label}</h3>
+        <span className="ml-auto text-[11.5px] text-faint">
+          {mcp ? <>needs the <code className="font-mono">{mcp}</code> MCP</> : "no MCP yet"}
+        </span>
+      </div>
+      <p className="mt-2 max-w-[70ch] text-[12.5px] leading-[1.55] text-muted">{whenMissing}</p>
+    </div>
+  );
+}

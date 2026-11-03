@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Shell, KEYSTONE_NAV } from "@/components/Shell";
 import { CRO } from "@/functions";
-import { governanceMode } from "@/lib/governance";
 import { Tile, SectionHeader, Pill, Table, Td, Definition } from "@/components/ui";
 import { Rows } from "@/components/Rows";
 import { Sparkline } from "@/components/Charts";

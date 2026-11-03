@@ -2,7 +2,6 @@ import { Rows } from "@/components/Rows";
 import { notFound } from "next/navigation";
 import { Shell, customerNav } from "@/components/Shell";
 import { ACCOUNT_REQUESTS } from "@/functions";
-import { governanceMode } from "@/lib/governance";
 import { Tile, SectionHeader, Pill, Table, Td, Empty } from "@/components/ui";
 import {getAccount, liveSnapshot, accountKeys } from "@/lib/snapshot";
 import { usd, usdCompact, num, days, shortDate } from "@/lib/format";

@@ -170,6 +170,7 @@ export const KEYSTONE_NAV: NavItem[] = [
   { href: "/keystone/accounts", label: "Accounts", role: "CRO" },
   { href: "/keystone/catalogue", label: "Catalogue", role: "Marketing" },
   { href: "/keystone/operations", label: "Operations", role: "Ops & CS" },
+  { href: "/keystone/sources", label: "Sources", role: "Stack" },
 ];
 
 export const customerNav = (key: string): NavItem[] => [

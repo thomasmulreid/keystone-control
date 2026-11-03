@@ -1,8 +1,9 @@
 import { Shell, KEYSTONE_NAV } from "@/components/Shell";
 import { MARKETING } from "@/functions";
-import { governanceMode } from "@/lib/governance";
 import { Tile, SectionHeader, Pill, Table, Td, Bar } from "@/components/ui";
 import { Rows } from "@/components/Rows";
+import { SourceGap } from "@/components/ui";
+import { missingFor } from "@/sources";
 import { CategoryBars } from "@/components/Charts";
 import { liveSnapshot } from "@/lib/snapshot";
 import { usd, usdCompact, usdExact, num, pct, shortDate } from "@/lib/format";
@@ -10,6 +11,8 @@ import { usd, usdCompact, usdExact, num, pct, shortDate } from "@/lib/format";
 export const revalidate = 300;
 
 export default function Catalogue() {
+  // Declared in MARKETING.reads but not connected — shown, not silently omitted.
+  const gaps = missingFor(MARKETING.id);
   const snapshot = liveSnapshot();
   const { skus, brands, totals } = snapshot;
   const spread = [...skus].filter((s) => s.spreadPct > 0).sort((a, b) => b.spreadPct - a.spreadPct);
@@ -136,6 +139,20 @@ export default function Catalogue() {
           </Rows>
         </Table>
       </section>
+
+      {gaps.length > 0 && (
+        <section className="mt-7">
+          <SectionHeader
+            title="Not connected yet"
+            sub="This view declares these sources. Until an MCP supplies them the analysis below them cannot run — so the gap is stated rather than left looking like an absence of problems."
+          />
+          <div className="grid gap-3 md:grid-cols-2">
+            {gaps.map((g) => (
+              <SourceGap key={g.id} label={g.label} mcp={g.mcp} whenMissing={g.whenMissing} />
+            ))}
+          </div>
+        </section>
+      )}
     </Shell>
   );
 }
