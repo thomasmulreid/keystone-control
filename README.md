@@ -1,64 +1,140 @@
 # Keystone Control
 
-Two control panels on one commercetools project.
+A control panel for a MACH commerce business, organised around the four people who
+run it — **CEO, CRO, Marketing, Operations** — plus a mirror panel for the customer's
+own side of the account.
 
-- **Keystone panel** — what the merchant's team sees, split by the role that opens it:
-  Performance (CEO), Accounts (CRO), Catalogue (Marketing), Operations (Ops & CS).
-- **Customer panel** — what one of Keystone's customers sees of their own account:
-  Spend, Governance, Continuity, Requests. Scoped to a single business unit.
+It reads live data through MCP, surfaces what needs a decision, and can make a defined
+and auditable set of changes. Built conversationally; no engineer wrote it.
 
-A toggle in the header switches between them; a dropdown picks which customer. The
-accent colour changes with the scope, so you can tell which side you are on from
-across the room.
-
-Every figure comes from the live `demo-orium-b2b` project — 262 orders, 12 trading
-accounts, 19 quote requests, 62 SKUs, between 2026-04-29 and 2026-10-02. Nothing on
-either panel is illustrative.
+**Live demo:** https://keystone-control-dun.vercel.app
 
 ---
 
-## The idea
+## Run it
 
-Both panels are the same engine. What differs is scope and objective:
+```bash
+npm install
+cp .env.example .env.local     # GOVERNANCE_MODE=propose is a safe default
+npm run dev
+```
 
-|  | Customer panel | Keystone panel |
-|---|---|---|
-| Scope | one business unit tree | the whole project |
-| Optimises for | spend efficiency, continuity, governance | revenue, margin, account health |
-| Shares | scorecard, work queue, approval drawer, audit trail | same |
+It boots against a committed data snapshot, so it works before you connect anything.
 
-The payoff is that the same fact appears on both sides with different meaning.
-Buyer concentration is *account risk* to Keystone and *continuity risk* to the
-customer. A spend limit is one commercetools field that both parties can change and
-both can see. Where that happens, the queue item carries a `⇄` note naming the
-counterpart's view of it.
+To point it at your own commercetools project, fill in the `CTP_*` variables and
+re-run the extractor:
+
+```bash
+CT_TOOL_RESULTS=<dir of saved MCP read payloads> python3 scripts/build-snapshot.py
+```
 
 ---
 
-## Current snapshot — refreshed 2026-10-26
+## Customising it for a customer
 
-| | |
+Everything a deployment needs to change lives in **`src/functions/`** — one file per
+function. Nothing else in the app decides density, thresholds or permissions.
+
+```ts
+export const CRO: FunctionDef = {
+  label: "Accounts",
+  role: "CRO",
+  question: "Which accounts need a conversation, and about what?",
+
+  principles: [ /* why this view looks the way it does */ ],
+
+  display: {                    // the display principle
+    density: "balanced",
+    tiles: 4, queueMax: 5, queueCompact: false,
+    tableRows: 8, breakdownRows: 6,
+  },
+
+  targets: [ {                  // the enrichment area
+    key: "buyer_concentration_pct",
+    label: "Concentration risk when one buyer places over",
+    unit: "percent", direction: "lower-is-better",
+    value: 90,
+    rationale: "Three buyers where one places 97% is a single-buyer account in disguise.",
+    owner: "CRO",
+  } ],
+
+  reads:   ["commerce.orders", "commerce.accounts", "commerce.quotes"],
+  actions: ["set-buyer-limit"], // allowlist — CEO is deliberately empty
+}
+```
+
+**Density follows the job.** A CEO gets three tiles and three clamped queue items.
+Operations is allowed to be dense, because someone sits in it all day. Change
+`display` and the pages follow.
+
+**Every target has an owner.** `rationale` and `owner` are required, so no threshold
+is anonymous. Where a customer has no real target, leave `value: null` — the panel
+says "no target set" rather than printing a percentage against a number nobody agreed
+to.
+
+---
+
+## Governance
+
+One environment variable decides how much autonomy a deployment has.
+
+| `GOVERNANCE_MODE` | Behaviour |
 |---|---|
-| Orders | 2,666 |
-| Trading accounts | 58 |
-| Revenue in window | $55,732,292 |
-| Window | 2024-10-02 to 2026-10-26 |
-| Last complete month (2026-09) | $5,612,121 |
-| Stopped revenue | $2,626,473 across 185 orders |
-| Contract leakage | $26,941 |
+| `observe` | Read-only. No action controls render at all. **Start here.** |
+| `propose` | Composes the change, shows the literal payload, records the approval — sends nothing. *(default)* |
+| `act` | Approved changes are sent under a client scoped to that one mutation. |
 
-The project grew roughly tenfold between the first build (262 orders / 12 accounts)
-and this one. Two consequences worth knowing:
+It is an environment variable rather than a UI toggle because "can this change my
+orders" deserves a paper trail, not a switch someone can flip mid-demo. An unset or
+misspelt value falls back to `propose`, never `act`.
 
-- **There is no monthly revenue target any more.** The $1.2M figure taken from the
-  older panel was written for a 12-account book doing ~$1M a month. Against a
-  $5,612,121 month it reads as 468% and means nothing, so the panel
-  now states that no target is set rather than printing a flattering number.
-- **47 of 58 accounts stop ordering within two weeks of 2026-09-28.**
-  The panel calls this out as a data-coverage question rather than emitting
-  47 churn alerts. See `quietCluster` in the extractor — accounts churn one at
-  a time; they do not all leave in the same fortnight, and a queue that claims they
-  did teaches its reader to ignore it.
+Two gates must both pass before an action is offered: the deployment mode **and** the
+function's own `actions` allowlist.
+
+`propose` is not a crippled `act` — it is where an organisation measures how often the
+proposal was right, and earns the move to `act` with evidence instead of optimism.
+
+---
+
+## Adding sources (MACH)
+
+`reads` entries are source ids — `commerce.orders`, `cms.content`, `search.queries`.
+Each resolves to an MCP adapter. Today commerce (commercetools) is implemented; CMS
+and search are declared and unimplemented, so adding one is an adapter plus a line in
+a function definition.
+
+---
+
+## Where things are
+
+| Looking for | File |
+|---|---|
+| Targets, thresholds, density, permissions | `src/functions/*.ts` |
+| Why it behaves as it does | `DECISIONS.md` |
+| What the panel may and may not change | `src/lib/mutations.ts` |
+| Autonomy gate | `src/lib/governance.ts` |
+| Metric definitions (shown behind the `?`) | `scripts/build-snapshot.py` → `DEFINITIONS` |
+| The data pull and every derived figure | `scripts/build-snapshot.py` |
+
+**Read `DECISIONS.md` before changing the extractor.** It records the mistakes —
+including attributing revenue by record date instead of trading date, which put 98% of
+a year in one month and looked entirely convincing.
+
+---
+
+## Not yet done
+
+Deliberately, to keep this simple:
+
+- **No database.** Targets are code defaults; the audit trail is in-memory and resets
+  on cold start. When that stops being acceptable: Neon via
+  `vercel integration add neon`, three tables — `targets`, `audit`, `snapshots` — and
+  the database wins over the code defaults.
+- **No live execution.** `act` mode needs a scoped client, a version re-read
+  immediately before writing, and an idempotency key.
+- **No real identity.** The audit trail hardcodes a demo operator. SSO before `act`.
+
+---
 
 ## Reconciliation with the existing control panel
 
