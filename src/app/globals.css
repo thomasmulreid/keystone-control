@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens.
+   Two scopes share one system. The accent is the ONLY thing that
+   changes between them, so you always know whose glass you are
+   looking through without reading a label.
+   ------------------------------------------------------------------ */
+:root {
+  --bg:            #f7f8f9;
+  --surface:       #ffffff;
+  --surface-sunk:  #f1f3f5;
+  --border:        #e2e5e9;
+  --border-strong: #cdd3da;
+
+  --text:          #14181d;
+  --text-muted:    #5b6673;
+  --text-faint:    #8b96a3;
+
+  /* scope accents — set on <body data-scope> */
+  --accent:        #1c7182;
+  --accent-soft:   #e6f2f4;
+
+  --pos:           #11734b;
+  --pos-soft:      #e7f4ee;
+  --neg:           #a3261d;
+  --neg-soft:      #fdecea;
+  --warn:          #8a5a00;
+  --warn-soft:     #fdf3e0;
+  --info:          #1d4ed8;
+  --info-soft:     #eaf0fe;
+
+  --radius:        10px;
+  --shadow: 0 1px 2px rgb(16 24 32 / 0.05), 0 1px 3px rgb(16 24 32 / 0.04);
+  --shadow-lg: 0 10px 30px rgb(16 24 32 / 0.12), 0 2px 8px rgb(16 24 32 / 0.06);
+}
+
+/* Text that sits ON the accent. Light mode accents are dark, so the label is
+   white; dark mode accents are light, so the label must go dark or it washes
+   out. One token, set beside the accent, keeps every filled control legible. */
+[data-scope="keystone"] {
+  --accent:          #9a6b00;
+  --accent-soft:     #fbf2dd;
+  --accent-contrast: #ffffff;
+}
+[data-scope="customer"] {
+  --accent:          #1c7182;
+  --accent-soft:     #e4f1f3;
+  --accent-contrast: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:            #0e1114;
+    --surface:       #171b1f;
+    --surface-sunk:  #12161a;
+    --border:        #262c33;
+    --border-strong: #363e47;
+
+    --text:          #e8ecf0;
+    --text-muted:    #9aa5b1;
+    --text-faint:    #6f7a86;
+
+    --pos:  #4ec38a; --pos-soft:  #10291f;
+    --neg:  #f2776b; --neg-soft:  #2b1513;
+    --warn: #e0a942; --warn-soft: #2a2010;
+    --info: #7aa2f7; --info-soft: #141c2e;
+  }
+  :root:not([data-theme="light"]) [data-scope="keystone"] {
+    --accent: #e0b155; --accent-soft: #2a2110; --accent-contrast: #1a1407;
+  }
+  :root:not([data-theme="light"]) [data-scope="customer"] {
+    --accent: #5bb5c7; --accent-soft: #10272c; --accent-contrast: #06191e;
+  }
+}
+
+@theme inline {
+  --color-bg:            var(--bg);
+  --color-surface:       var(--surface);
+  --color-sunk:          var(--surface-sunk);
+  --color-line:          var(--border);
+  --color-line-strong:   var(--border-strong);
+  --color-ink:           var(--text);
+  --color-muted:         var(--text-muted);
+  --color-faint:         var(--text-faint);
+  --color-accent:          var(--accent);
+  --color-accent-soft:     var(--accent-soft);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-pos:           var(--pos);
+  --color-pos-soft:      var(--pos-soft);
+  --color-neg:           var(--neg);
+  --color-neg-soft:      var(--neg-soft);
+  --color-warn:          var(--warn);
+  --color-warn-soft:     var(--warn-soft);
+  --color-info:          var(--info);
+  --color-info-soft:     var(--info-soft);
+  --radius-card:         var(--radius);
+}
+
+* { border-color: var(--border); }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "cv05" 1;
+}
+
+/* Figures line up in columns. Non-negotiable in a table of money. */
+.tnum { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.hairline { border-color: var(--border); }
+
+/* Focus is visible everywhere. Ops teams live on the keyboard. */
+:where(a, button, select, input, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+details > summary { list-style: none; cursor: pointer; }
+details > summary::-webkit-details-marker { display: none; }
+
+@keyframes slide-in { from { transform: translateX(16px); opacity: 0 } to { transform: none; opacity: 1 } }
+.animate-drawer { animation: slide-in .18s cubic-bezier(.22,.8,.3,1) }
+@keyframes fade-in { from { opacity: 0 } to { opacity: 1 } }
+.animate-fade { animation: fade-in .15s ease-out }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-drawer, .animate-fade { animation: none }
+}

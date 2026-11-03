@@ -1,0 +1,1454 @@
+[
+ {
+  "key": "keystone",
+  "id": "81046c96-4fed-460b-82a7-ece154b9ff76",
+  "name": "Keystone",
+  "unitType": "Company",
+  "parent": null,
+  "store": "KEYSTONE-B2B",
+  "city": "New York",
+  "state": "NY",
+  "contactEmail": "keystone@orium.com",
+  "buyerLimit": 50000,
+  "limitExceededBehavior": "pending",
+  "associates": [],
+  "isMerchant": true
+ },
+ {
+  "key": "company-a",
+  "id": "6a42f4c3-e424-4c71-9478-e118e8c99f98",
+  "name": "Company A",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "New York",
+  "state": "NY",
+  "contactEmail": "company.a@orium.com",
+  "buyerLimit": 1000000,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "22d80bb6-1d03-4e24-b7f0-f2550f0fd307",
+    "role": "admin"
+   },
+   {
+    "id": "8a6516e6-fcea-400d-bf86-13e2dd45ce63",
+    "role": "buyer"
+   },
+   {
+    "id": "7d5b0951-c97b-4d5d-89c2-5fd3a629dcda",
+    "role": "buyer"
+   },
+   {
+    "id": "17d7f29c-21c0-46d6-b6c5-0f456422f94d",
+    "role": "super-admin"
+   },
+   {
+    "id": "fe8fda22-9ecc-46bf-b250-b8f3912a5be3",
+    "role": "buyer-admin"
+   }
+  ]
+ },
+ {
+  "key": "company-b",
+  "id": "2c656081-6066-4531-84d6-c967b0dab023",
+  "name": "Prominence Health Plan members",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "",
+  "state": "",
+  "contactEmail": "company.b@orium.com",
+  "buyerLimit": 2300,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "2aa9bbde-1960-4e0f-93ba-05b465f87437",
+    "role": "admin"
+   },
+   {
+    "id": "1899a128-0fb5-4a25-b90f-5378c43476b4",
+    "role": "approver"
+   },
+   {
+    "id": "09c87278-c01c-41ce-bcc0-19529360a32b",
+    "role": "buyer"
+   },
+   {
+    "id": "0ca99b98-a294-4103-8a16-2dcf348ce941",
+    "role": "super-admin"
+   }
+  ]
+ },
+ {
+  "key": "company-a-division-1",
+  "id": "49aa415b-97b2-4fdd-a787-a3e511f7cfe1",
+  "name": "Company A Division 1",
+  "unitType": "Division",
+  "parent": "company-a",
+  "store": "company-a-store",
+  "city": "New York",
+  "state": "NY",
+  "contactEmail": "company.a.div.1@orium.com",
+  "buyerLimit": 22300,
+  "limitExceededBehavior": "pending",
+  "associates": []
+ },
+ {
+  "key": "company-a-division-2",
+  "id": "f41d47e7-5fea-4e39-bcef-4460760ef876",
+  "name": "Company A Division 2",
+  "unitType": "Division",
+  "parent": "company-a",
+  "store": "company-a-store",
+  "city": "",
+  "state": "",
+  "contactEmail": "company.a.div.2@orium.com",
+  "buyerLimit": 5000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "7d5b0951-c97b-4d5d-89c2-5fd3a629dcda",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "company-b-division-1",
+  "id": "a54b5f2b-0f3a-4dc2-a3e2-8eb835be31e2",
+  "name": "Company B Division 1",
+  "unitType": "Division",
+  "parent": "company-b",
+  "store": "company-b-store",
+  "city": "",
+  "state": "",
+  "contactEmail": "company.b.div.1@orium.com",
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": []
+ },
+ {
+  "key": "company-b-division-2",
+  "id": "f1641244-a8bf-41fa-9954-9678f5027fb4",
+  "name": "Company B Division 2",
+  "unitType": "Division",
+  "parent": "company-b",
+  "store": "company-b-store",
+  "city": "",
+  "state": "",
+  "contactEmail": "company.b.div.2@orium.com",
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "94186a79-4071-4fc9-9bc3-bab853754f65",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "copperline-electrical",
+  "id": "16542d60-eb97-4c57-8552-cb0dc645bbf8",
+  "name": "Copperline Electrical",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Phoenix",
+  "state": "AZ",
+  "contactEmail": "buying@copperlineelectric.com",
+  "buyerLimit": 12000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "7a5cb6f7-8c81-47ba-8c7e-f09a702cd698",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "northgate-facilities",
+  "id": "8717cb78-888d-41a6-9eb3-f9af3e16f797",
+  "name": "Northgate Facilities Group",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Chicago",
+  "state": "IL",
+  "contactEmail": "ap@northgatefacilities.com",
+  "buyerLimit": 700000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "49e112b9-97b5-4242-b2f1-057af9d9fa97",
+    "role": "admin"
+   },
+   {
+    "id": "c5a3b659-dd71-4528-b46e-8f9cfa4442f5",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "redline-contracting",
+  "id": "418a9418-9cde-4f5b-a950-25b75b9a5c3d",
+  "name": "Redline Contracting",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Dallas",
+  "state": "TX",
+  "contactEmail": "accounts@redlinecontracting.com",
+  "buyerLimit": 200000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "e388bde0-e4b7-4b9a-b5a2-bac2f7673bbd",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "westbrook-site-services",
+  "id": "2e6d9540-a07a-4bf9-980e-af77148028fa",
+  "name": "Westbrook Site Services",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Atlanta",
+  "state": "GA",
+  "contactEmail": "admin@westbrooksite.com",
+  "buyerLimit": 6000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "4e6934a1-7d4d-4f5c-8e83-fb30c9503591",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "harbour-point-maintenance",
+  "id": "9a4026a9-8cb7-4a44-88c3-58e120c74538",
+  "name": "Harbour Point Maintenance",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Boston",
+  "state": "MA",
+  "contactEmail": "ops@harbourpointmaint.com",
+  "buyerLimit": 100000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "e0e900bd-d5d2-4b2a-bfab-0fac254be36e",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "fairmount-trades",
+  "id": "3261ad87-6f2c-4442-9915-d24675d7a115",
+  "name": "Fairmount Trades Supply",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Philadelphia",
+  "state": "PA",
+  "contactEmail": "orders@fairmounttrades.com",
+  "buyerLimit": 18000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "2afc8b43-a1d3-481b-a6d7-db3a427558c0",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "summit-ridge-property",
+  "id": "a4086ee6-e061-47de-8a4e-e91f0be33aba",
+  "name": "Summit Ridge Property Group",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Denver",
+  "state": "CO",
+  "contactEmail": "facilities@summitridgepg.com",
+  "buyerLimit": 30000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "b8ddc040-578f-4402-9ab6-a17be6399171",
+    "role": "admin"
+   },
+   {
+    "id": "e40c9e3b-b4e4-4692-8bb6-ed87abed5d9b",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "cascade-mechanical",
+  "id": "d8c4842a-aa81-4664-b9a0-96b237d1930b",
+  "name": "Cascade Mechanical Services",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Portland",
+  "state": "OR",
+  "contactEmail": "purchasing@cascademech.com",
+  "buyerLimit": 150000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "a3cafa4e-45ad-42be-a756-406a34a86f49",
+    "role": "admin"
+   },
+   {
+    "id": "27160f06-f543-44d3-acd7-62b24f177757",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "talbot-precision",
+  "id": "0f742f80-804c-4018-a8f9-3ae9ee2afcdc",
+  "name": "Talbot Precision Manufacturing",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Cleveland",
+  "state": "OH",
+  "contactEmail": "purchasing@talbotprecision.com",
+  "buyerLimit": 350000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "7b6a1d10-2cdc-4e3b-96b8-4acb7bc91d61",
+    "role": "admin"
+   },
+   {
+    "id": "39aca7f4-24c4-47c7-9425-5823c499731d",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "ironside-fabrication",
+  "id": "9f09ba02-d569-44a0-a97e-d292c5290e64",
+  "name": "Ironside Fabrication Works",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Milwaukee",
+  "state": "WI",
+  "contactEmail": "ap@ironsidefab.com",
+  "buyerLimit": 500000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "b9513403-c06a-4f4e-9e5b-e8a1dd873dd9",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "calloway-industrial-group",
+  "id": "58af90f1-6bb2-4be0-b85d-d227a52c038d",
+  "name": "Calloway Industrial Group",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Houston",
+  "state": "TX",
+  "contactEmail": "ap@callowayindustrial.com",
+  "buyerLimit": 650000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "d6865720-9fd6-4125-a513-4e94bc588eda",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "brightline-facilities",
+  "id": "44003b44-1d1a-40ae-9957-5685b1fa7fcb",
+  "name": "Brightline Facilities Management",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Atlanta",
+  "state": "GA",
+  "contactEmail": "orders@brightlinefm.com",
+  "buyerLimit": 180000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "c42d6033-1803-4f3b-af70-33e4f124658f",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "meridian-plant-services",
+  "id": "c0dd8b0c-895e-4498-88da-f304f408bc70",
+  "name": "Meridian Plant Services",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Cleveland",
+  "state": "OH",
+  "contactEmail": "purchasing@meridianplant.com",
+  "buyerLimit": 400000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "26d7ce7e-0c8f-4d9c-a62e-198dd7964c51",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "halloway-fabrication",
+  "id": "ac529316-5588-4bd0-890b-80b87222230e",
+  "name": "Halloway Fabrication",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Phoenix",
+  "state": "AZ",
+  "contactEmail": "purchasing@halloway.com",
+  "buyerLimit": 892000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "8a8503bb-e39d-4e09-8275-dde0a681dfa1",
+    "role": "admin"
+   },
+   {
+    "id": "e792be89-ed8a-4b1a-82c3-79f7be24992d",
+    "role": "buyer"
+   },
+   {
+    "id": "d4c23e28-9c9e-4625-a6c9-ed4a46ef6474",
+    "role": "buyer"
+   },
+   {
+    "id": "c0a59c1d-a5b9-4ffc-8114-a7bc028f2d0c",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "northfield-contracting",
+  "id": "45b137fe-478f-48ba-ba3c-5651fd5a1e09",
+  "name": "Northfield Contracting",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Chicago",
+  "state": "IL",
+  "contactEmail": "purchasing@northfield.com",
+  "buyerLimit": 1048000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "8475e131-5f73-4d9e-a9fc-fa6311d69881",
+    "role": "admin"
+   },
+   {
+    "id": "c021b0fc-f21a-4f97-8085-dd4d42290d2a",
+    "role": "buyer"
+   },
+   {
+    "id": "2ff4849e-98fb-49b1-bff8-619cbd4b0d00",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "redwood-electrical",
+  "id": "c6f6acdd-b5f9-48a4-a8b4-6baf5412d4e4",
+  "name": "Redwood Electrical",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Atlanta",
+  "state": "GA",
+  "contactEmail": "purchasing@redwood.com",
+  "buyerLimit": 836000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "8f068e2f-faee-467f-91ac-65029b1882b8",
+    "role": "admin"
+   },
+   {
+    "id": "2b484f8d-ba80-4eda-b03e-59453993da94",
+    "role": "buyer"
+   },
+   {
+    "id": "4ae07920-cd2d-4a07-a73a-a2d3ba75e78f",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "kestrel-manufacturing",
+  "id": "df591c5b-b02e-4144-b454-3cd8967c7484",
+  "name": "Kestrel Manufacturing",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Denver",
+  "state": "CO",
+  "contactEmail": "purchasing@kestrel.com",
+  "buyerLimit": 789000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "67ce3713-eab2-4936-8064-9c2cb02bc4cd",
+    "role": "admin"
+   },
+   {
+    "id": "80229fcc-91dc-4899-86b3-07e7bdb633f2",
+    "role": "buyer"
+   },
+   {
+    "id": "c58098aa-f60b-47a9-8686-299c9f85f09b",
+    "role": "buyer"
+   },
+   {
+    "id": "93e201d7-57da-49b7-af45-6095aa278ffd",
+    "role": "buyer"
+   },
+   {
+    "id": "51974842-7aed-48eb-b67a-42fd3c3b8e68",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "vanguard-property-group",
+  "id": "27289d80-3bcb-4983-b4b7-edc380e5a9c2",
+  "name": "Vanguard Property Group",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Portland",
+  "state": "OR",
+  "contactEmail": "purchasing@vanguard.com",
+  "buyerLimit": 340000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "7f82dd9b-900d-4b9f-bca0-b649e2f26dd9",
+    "role": "admin"
+   },
+   {
+    "id": "e30e7ffa-0510-474d-bc3f-453fea777cc6",
+    "role": "buyer"
+   },
+   {
+    "id": "23fcea86-89ae-4c59-b9a1-38864eb2e80e",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "pinnacle-construction-group",
+  "id": "a2a74de9-d870-4eb1-b635-d1790300a46f",
+  "name": "Pinnacle Construction Group",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Minneapolis",
+  "state": "MN",
+  "contactEmail": "purchasing@pinnacle.com",
+  "buyerLimit": 491000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "674a6ac2-cc25-43a0-bfcb-99d2d45ec55c",
+    "role": "admin"
+   },
+   {
+    "id": "94e8c970-01fb-4f60-b284-a06d76fc23b9",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "granite-peak-mechanical-services",
+  "id": "f8e0ec38-6354-4a52-aac0-b6318090dab8",
+  "name": "Granite Peak Mechanical Services",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Houston",
+  "state": "TX",
+  "contactEmail": "purchasing@granitepeak.com",
+  "buyerLimit": 952000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "0cb165ea-09f9-402f-990b-64a120c093b6",
+    "role": "admin"
+   },
+   {
+    "id": "cb16795d-5933-4632-9fc5-908408c7e348",
+    "role": "buyer"
+   },
+   {
+    "id": "d42f2ff6-795c-4045-a071-75002224f3a4",
+    "role": "buyer"
+   },
+   {
+    "id": "f9db6f82-d953-4d0c-8bbc-264af6ee896f",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "blackstone-municipal-services",
+  "id": "25310d78-f254-4a72-9454-6b6562675458",
+  "name": "Blackstone Municipal Services",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Boston",
+  "state": "MA",
+  "contactEmail": "purchasing@blackstone.com",
+  "buyerLimit": 297000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "d86d7404-a296-4605-a35a-beeea074bff2",
+    "role": "admin"
+   },
+   {
+    "id": "d57768a0-aa03-4e0e-84b7-f49eef4e0e46",
+    "role": "buyer"
+   },
+   {
+    "id": "4e1bee09-4f91-47e8-9e87-71cc10b4e3cc",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "coyote-ridge-estates",
+  "id": "6eddbb6b-dfc5-4689-b6be-b5c8dd97e715",
+  "name": "Coyote Ridge Estates",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Seattle",
+  "state": "WA",
+  "contactEmail": "purchasing@coyoteridge.com",
+  "buyerLimit": 288000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "1bc4c943-a1fb-4956-bc05-dc71b91c4bd1",
+    "role": "admin"
+   },
+   {
+    "id": "025fa007-3020-452f-9377-a3a391431e77",
+    "role": "buyer"
+   },
+   {
+    "id": "63fc4220-d298-4915-8fa5-6306ed71a42f",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "lakeshore-plant-services",
+  "id": "74f6f221-6160-425e-964b-b234db0a568c",
+  "name": "Lakeshore Plant Services",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Nashville",
+  "state": "TN",
+  "contactEmail": "purchasing@lakeshore.com",
+  "buyerLimit": 247000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "a0032e07-139b-4f73-8f77-75e00b168618",
+    "role": "admin"
+   },
+   {
+    "id": "09be507c-90d0-4d73-ad17-b78d23855efd",
+    "role": "buyer"
+   },
+   {
+    "id": "a2d92d12-dbb7-4b36-a053-7cbd15835ddd",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "ironside-facilities-group",
+  "id": "abd9e30e-0da3-4846-85f8-2e4a5f1e2f20",
+  "name": "Ironside Facilities Group",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Cleveland",
+  "state": "OH",
+  "contactEmail": "purchasing@ironside.com",
+  "buyerLimit": 1034000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "4dfbe451-1e89-4f6e-ac8d-18a165be341e",
+    "role": "admin"
+   },
+   {
+    "id": "944cbdbe-cfc8-40a1-b27c-175cbe05a105",
+    "role": "buyer"
+   },
+   {
+    "id": "9fca9d30-1874-4cb7-a628-69735b018ff9",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "ridgeline-building-services",
+  "id": "47e6cc52-fdc2-4418-96a0-75af3a1327c6",
+  "name": "Ridgeline Building Services",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Columbus",
+  "state": "OH",
+  "contactEmail": "purchasing@ridgeline.com",
+  "buyerLimit": 293000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "1ee2114c-2d0a-4a4b-b904-67c703aadbc1",
+    "role": "admin"
+   },
+   {
+    "id": "b3dcdf20-2c75-4c81-a0fe-96c69e342d8d",
+    "role": "buyer"
+   },
+   {
+    "id": "aa9afa2b-f12b-46ea-b63b-0973b1a637fa",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "clearwater-facilities-management",
+  "id": "d13f0e04-5fe0-40d1-9697-72363b46487e",
+  "name": "Clearwater Facilities Management",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Dallas",
+  "state": "TX",
+  "contactEmail": "purchasing@clearwater.com",
+  "buyerLimit": 278000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "b3259f28-f88a-4263-8e87-c87ae39161fa",
+    "role": "admin"
+   },
+   {
+    "id": "d7291b7d-8d5b-48ba-a060-e52a40f27e59",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "arbor-metalworks",
+  "id": "4f602829-9127-49be-8390-8a2d06ef9409",
+  "name": "Arbor Metalworks",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Charlotte",
+  "state": "NC",
+  "contactEmail": "purchasing@arbor.com",
+  "buyerLimit": 388000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "079300a0-3444-48f6-a950-476b45353dad",
+    "role": "admin"
+   },
+   {
+    "id": "6a91c372-2224-4b1d-8456-8e2d9bc341e9",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "sterling-mechanical-contractors",
+  "id": "33679410-b67c-4830-b9ee-4502dd68c708",
+  "name": "Sterling Mechanical Contractors",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Philadelphia",
+  "state": "PA",
+  "contactEmail": "purchasing@sterling.com",
+  "buyerLimit": 454000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "ffc4f9d9-0116-46f0-9eac-4412ae7fdb66",
+    "role": "admin"
+   },
+   {
+    "id": "acc4acb4-e4fb-406d-8b8c-f1d7223ab0dd",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "tidewater-public-works",
+  "id": "07f11cc6-6fb0-4638-8536-a08b2c4c00ef",
+  "name": "Tidewater Public Works",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Kansas City",
+  "state": "MO",
+  "contactEmail": "purchasing@tidewater.com",
+  "buyerLimit": 337000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "112dead6-f2dd-4331-acd2-555061fb0bd1",
+    "role": "admin"
+   },
+   {
+    "id": "5a6d2248-a662-4b8d-bf47-1315b5fc85b0",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "foundry-electrical-contractors",
+  "id": "9947cda4-1fd3-4531-b21e-8b7b1ff998ce",
+  "name": "Foundry Electrical Contractors",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Detroit",
+  "state": "MI",
+  "contactEmail": "purchasing@foundry.com",
+  "buyerLimit": 221000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "43910361-0af2-4734-a8aa-70959018e9b3",
+    "role": "admin"
+   },
+   {
+    "id": "5c3bcc32-50a0-48bf-94ac-21f627eca75c",
+    "role": "buyer"
+   },
+   {
+    "id": "2b4d3356-37d3-4171-ae3a-a2f0f3f76dad",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "copperfield-hvac-services",
+  "id": "8c1f3c12-6838-4fee-97fd-a83ae27279ca",
+  "name": "Copperfield HVAC Services",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Indianapolis",
+  "state": "IN",
+  "contactEmail": "purchasing@copperfield.com",
+  "buyerLimit": 313000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "2edbb2d0-0b70-4c14-a9a4-80f7af43ab47",
+    "role": "admin"
+   },
+   {
+    "id": "e3e29989-429d-43c5-902e-8800eec99f16",
+    "role": "buyer"
+   },
+   {
+    "id": "f8d55c16-53ee-4eb2-a9f7-0d263610bacf",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "stonegate-power-services",
+  "id": "a3957be1-afc3-4a06-9fbe-d1ce4b1c9497",
+  "name": "Stonegate Power Services",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Milwaukee",
+  "state": "WI",
+  "contactEmail": "purchasing@stonegate.com",
+  "buyerLimit": 92000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "5a02abfc-b0ad-4ed7-b0e9-621e26c87856",
+    "role": "admin"
+   },
+   {
+    "id": "d56fd27c-c38d-4f3f-9db2-49173686957b",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "beacon-precision-engineering",
+  "id": "ee2b9aec-4831-4cbb-9087-ee91718b00f1",
+  "name": "Beacon Precision Engineering",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "St Louis",
+  "state": "MO",
+  "contactEmail": "purchasing@beacon.com",
+  "buyerLimit": 48000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "ebecefbc-4aef-40a4-84cb-f21ab7729241",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "hartwell-production-group",
+  "id": "d72233b3-5888-436b-8d6e-fb3c5c3bff42",
+  "name": "Hartwell Production Group",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Baltimore",
+  "state": "MD",
+  "contactEmail": "purchasing@hartwell.com",
+  "buyerLimit": 132000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "71565d46-5a77-4809-b82a-a22b7c443e6c",
+    "role": "admin"
+   },
+   {
+    "id": "a2fe7bea-ee10-4188-8435-c7b7d1ba32c6",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "larkspur-asset-management",
+  "id": "98296327-6f43-4ac8-ac7e-2b2cfc48d535",
+  "name": "Larkspur Asset Management",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Salt Lake City",
+  "state": "UT",
+  "contactEmail": "purchasing@larkspur.com",
+  "buyerLimit": 96000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "1bc2c8f8-c1b7-4262-83af-6a779d27668f",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "quarry-site-services",
+  "id": "19ec7202-a9e3-46d1-89da-d902b47b8875",
+  "name": "Quarry Site Services",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Tampa",
+  "state": "FL",
+  "contactEmail": "purchasing@quarry.com",
+  "buyerLimit": 88000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "af7de8f5-6d22-4a10-9479-5ca6a1d93720",
+    "role": "admin"
+   },
+   {
+    "id": "ae98ac9d-beca-409c-8684-71f119026f4c",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "eastgate-electrical",
+  "id": "f069c303-4aab-488a-b28c-89f02103a51d",
+  "name": "Eastgate Electrical",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Atlanta",
+  "state": "GA",
+  "contactEmail": "purchasing@eastgate.com",
+  "buyerLimit": 48000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "c427de90-8d79-4740-b8cc-745873fb3457",
+    "role": "admin"
+   },
+   {
+    "id": "7fd42e80-a015-4242-a016-aa657b03b5de",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "fairweather-fabrication",
+  "id": "3f725908-71cb-457c-aadd-ff8fd12eae2a",
+  "name": "Fairweather Fabrication",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Phoenix",
+  "state": "AZ",
+  "contactEmail": "purchasing@fairweather.com",
+  "buyerLimit": 146000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "6b173c83-b2b1-4423-8901-4d8009da0daa",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "glenbrook-manufacturing",
+  "id": "b03f08b0-1a40-4b65-8304-f8659ed09211",
+  "name": "Glenbrook Manufacturing",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Denver",
+  "state": "CO",
+  "contactEmail": "purchasing@glenbrook.com",
+  "buyerLimit": 73000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "b41f52b4-3eff-48ce-80df-b3c3e6d702df",
+    "role": "admin"
+   },
+   {
+    "id": "bb3b37ee-652e-4f3e-99b9-1b82ff8c0abb",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "benchmark-county-services",
+  "id": "96c6d84e-3a50-41b3-ae96-3887dcd25279",
+  "name": "Benchmark County Services",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Omaha",
+  "state": "NE",
+  "contactEmail": "purchasing@benchmark.com",
+  "buyerLimit": 73000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "858f23c1-563c-4569-9ff2-4169020926e3",
+    "role": "admin"
+   },
+   {
+    "id": "d90867a4-6a7e-4b20-9cc2-2dc03d6ad32f",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "dunmore-mechanical-services",
+  "id": "3f53b4b3-29ef-420a-b5ec-27e26c55d8f2",
+  "name": "Dunmore Mechanical Services",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Houston",
+  "state": "TX",
+  "contactEmail": "purchasing@dunmore.com",
+  "buyerLimit": 98000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "a337f7ed-424f-48aa-90e6-436d1f06a734",
+    "role": "admin"
+   },
+   {
+    "id": "df8ed1cf-fdad-48d0-817e-5892d7948964",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "crosshaven-facilities-group",
+  "id": "9117d35a-94cb-438d-aa95-4e364385a3a4",
+  "name": "Crosshaven Facilities Group",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Cleveland",
+  "state": "OH",
+  "contactEmail": "purchasing@crosshaven.com",
+  "buyerLimit": 77000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "fa7ad909-11e5-4524-a21c-4261a107d8b1",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "hollowell-contracting",
+  "id": "036631af-77f1-4596-813c-d77ec7503010",
+  "name": "Hollowell Contracting",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Chicago",
+  "state": "IL",
+  "contactEmail": "purchasing@hollowell.com",
+  "buyerLimit": 99000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "5ad5ac4d-9d1c-44d1-90c5-b7228266a991",
+    "role": "admin"
+   },
+   {
+    "id": "3a4a9cba-0ca1-4984-b7f3-5115c3a69498",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "keelson-facilities-management",
+  "id": "41d06d42-21f1-4bc5-ae88-272f8cb7abf9",
+  "name": "Keelson Facilities Management",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Dallas",
+  "state": "TX",
+  "contactEmail": "purchasing@keelson.com",
+  "buyerLimit": 61000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "4a94c693-b86e-448b-b668-343ae82d620c",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "linden-mechanical-contractors",
+  "id": "d54c659c-4355-4b31-ad4c-b527c517613f",
+  "name": "Linden Mechanical Contractors",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Philadelphia",
+  "state": "PA",
+  "contactEmail": "purchasing@linden.com",
+  "buyerLimit": 62000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "dc92f2d8-21a0-46e6-8945-c449acee167f",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "junction-municipal-services",
+  "id": "4a306c3a-fe07-4d82-bb49-50d003f0b726",
+  "name": "Junction Municipal Services",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Boston",
+  "state": "MA",
+  "contactEmail": "purchasing@junction.com",
+  "buyerLimit": 148000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "e77ef876-c76f-4baf-a1e4-a108e2f2de2a",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "ironwood-property-group",
+  "id": "7ebad187-2e9b-4b4c-bb78-5cf05411268f",
+  "name": "Ironwood Property Group",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Portland",
+  "state": "OR",
+  "contactEmail": "purchasing@ironwood.com",
+  "buyerLimit": 95000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "7a0870e1-b562-49e3-898d-31e5f36afa85",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "marrow-electrical-contractors",
+  "id": "96c61218-3a9f-4a37-b2e9-e3e424ac9b25",
+  "name": "Marrow Electrical Contractors",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Detroit",
+  "state": "MI",
+  "contactEmail": "purchasing@marrow.com",
+  "buyerLimit": 105000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "f92239a8-630e-482e-956a-7f98da8fa661",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "nightingale-metalworks",
+  "id": "de353bda-aefb-4304-9318-2d721a4e290b",
+  "name": "Nightingale Metalworks",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Charlotte",
+  "state": "NC",
+  "contactEmail": "purchasing@nightingale.com",
+  "buyerLimit": 93000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "7ead022f-db3d-49f6-b17c-19b2b7f48528",
+    "role": "admin"
+   },
+   {
+    "id": "0c9729be-8277-426a-be38-8d7ae333f624",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "quarrydale-estates",
+  "id": "52796e34-18c7-40b6-a86b-cc1132ce499f",
+  "name": "Quarrydale Estates",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Seattle",
+  "state": "WA",
+  "contactEmail": "purchasing@quarrydale.com",
+  "buyerLimit": 118000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "5f8bced4-ee37-40b3-90a2-a5eed0a56392",
+    "role": "admin"
+   },
+   {
+    "id": "6ac5c49b-bb3b-4253-8c8a-909a1509175c",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "pendleton-construction-group",
+  "id": "aef65107-996c-4208-9927-d0cea832c557",
+  "name": "Pendleton Construction Group",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Minneapolis",
+  "state": "MN",
+  "contactEmail": "purchasing@pendleton.com",
+  "buyerLimit": 69000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "b222c143-be1e-44ed-9311-04bbaa5d7e53",
+    "role": "admin"
+   },
+   {
+    "id": "59b714d7-e9cc-4775-b1bd-27954a657a3f",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oakhurst-plant-services",
+  "id": "19f42508-2765-459e-a6ae-0d02cd1787d2",
+  "name": "Oakhurst Plant Services",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Nashville",
+  "state": "TN",
+  "contactEmail": "purchasing@oakhurst.com",
+  "buyerLimit": 106000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "924f2625-822c-43a3-8662-6ed0286c36a5",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "saltbridge-building-services",
+  "id": "239b7a38-919f-4127-914b-b242d47ca9fe",
+  "name": "Saltbridge Building Services",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Columbus",
+  "state": "OH",
+  "contactEmail": "purchasing@saltbridge.com",
+  "buyerLimit": 108000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "fe2c4fa9-5fa3-410d-a43c-91c946a336eb",
+    "role": "admin"
+   },
+   {
+    "id": "e9e3786c-6d84-4390-8310-29104897f91a",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "rockvale-public-works",
+  "id": "1dccd3d0-d877-4fe4-9513-e54aca86c9ff",
+  "name": "Rockvale Public Works",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Kansas City",
+  "state": "MO",
+  "contactEmail": "purchasing@rockvale.com",
+  "buyerLimit": 130000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "cd721d95-6015-4727-9d76-d6fba6005660",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "thornbury-hvac-services",
+  "id": "63f0545c-5dd2-4d22-98e5-df4846371d93",
+  "name": "Thornbury HVAC Services",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Indianapolis",
+  "state": "IN",
+  "contactEmail": "purchasing@thornbury.com",
+  "buyerLimit": 70000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "626707f1-47ae-4f8b-aa7a-5b90dacc0856",
+    "role": "admin"
+   },
+   {
+    "id": "6b1f9cd9-0242-497f-b622-2b49921a5f5e",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "valebrook-precision-engineering",
+  "id": "37d79a70-6b9c-487b-8273-4e7cc32e486f",
+  "name": "Valebrook Precision Engineering",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "St Louis",
+  "state": "MO",
+  "contactEmail": "purchasing@valebrook.com",
+  "buyerLimit": 103000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "bb08d4b1-72e2-4bc4-8629-22fb22f5e341",
+    "role": "admin"
+   }
+  ]
+ },
+ {
+  "key": "underwood-power-services",
+  "id": "40fb25f1-bd57-44d1-a0f9-13153294e1d7",
+  "name": "Underwood Power Services",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Milwaukee",
+  "state": "WI",
+  "contactEmail": "purchasing@underwood.com",
+  "buyerLimit": 127000,
+  "limitExceededBehavior": "pending",
+  "associates": []
+ },
+ {
+  "key": "westmark-production-group",
+  "id": "f991df91-83ee-41e2-9200-9cb2f24ae021",
+  "name": "Westmark Production Group",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Baltimore",
+  "state": "MD",
+  "contactEmail": "purchasing@westmark.com",
+  "buyerLimit": 53000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "15fa42fb-2a20-4e4d-b92c-8f1859b3c081",
+    "role": "admin"
+   }
+  ]
+ }
+]
