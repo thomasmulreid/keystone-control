@@ -1,4 +1,5 @@
 import { FunctionDef } from "./types";
+import { target } from "./policy";
 
 // The cleanest view in the product. If everything is on it, nothing is.
 export const CEO: FunctionDef = {
@@ -40,7 +41,7 @@ export const CEO: FunctionDef = {
       label: "Largest account, share of revenue",
       unit: "percent",
       direction: "lower-is-better",
-      value: 20,
+      value: target("max_account_concentration_pct", 20),
       rationale:
         "Above roughly a fifth, losing one account stops being a bad quarter and becomes a different company.",
       owner: "CEO",

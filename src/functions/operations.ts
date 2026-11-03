@@ -1,4 +1,5 @@
 import { FunctionDef } from "./types";
+import { target } from "./policy";
 
 // A working surface. Allowed to be dense — someone sits in it all day.
 export const OPERATIONS: FunctionDef = {
@@ -30,7 +31,7 @@ export const OPERATIONS: FunctionDef = {
       label: "Flag unsettled payment after",
       unit: "days",
       direction: "lower-is-better",
-      value: 2,
+      value: target("payment_pending_days", 2),
       rationale: "Authorised but never captured. Usually a terms account awaiting credit review.",
       owner: "Finance / AR",
     },
@@ -39,16 +40,25 @@ export const OPERATIONS: FunctionDef = {
       label: "Flag unconfirmed orders after",
       unit: "days",
       direction: "lower-is-better",
-      value: 1,
+      value: target("awaiting_release_days", 1),
       rationale: "Created but never confirmed. Most of these sit above a buyer's spend limit.",
       owner: "Order operations",
+    },
+    {
+      key: "ship_pending_days",
+      label: "Flag paid-but-not-picked after",
+      unit: "days",
+      direction: "lower-is-better",
+      value: target("ship_pending_days", 3),
+      rationale: "Paid and confirmed but not picked. Check stock and the fulfilment queue.",
+      owner: "Fulfilment",
     },
     {
       key: "ready_not_shipped_days",
       label: "Flag picked-but-not-dispatched after",
       unit: "days",
       direction: "lower-is-better",
-      value: 5,
+      value: target("ready_not_shipped_days", 5),
       rationale: "Usually a carrier booking gap rather than a stock problem.",
       owner: "Fulfilment",
     },
@@ -57,7 +67,7 @@ export const OPERATIONS: FunctionDef = {
       label: "Quote goes cold after",
       unit: "days",
       direction: "lower-is-better",
-      value: 3,
+      value: target("quote_cold_days", 3),
       rationale: "Quote requests older than a few days convert materially worse.",
       owner: "Commercial",
     },
@@ -66,7 +76,7 @@ export const OPERATIONS: FunctionDef = {
       label: "Second approver required above",
       unit: "currency",
       direction: "lower-is-better",
-      value: 500000,
+      value: target("second_approver_over", 500000),
       rationale:
         "Order value above which one approval is not enough. Governance, not performance — set it with whoever owns delegated authority.",
       owner: "Finance",

@@ -67,6 +67,11 @@ export const CRO: FunctionDef = {
 Operations is allowed to be dense, because someone sits in it all day. Change
 `display` and the pages follow.
 
+**There is one copy of every number.** A `TargetDef`'s value is read from
+`config/policy.json`, which the Python extractor reads too — so the threshold the UI
+shows as a target is literally the one that produced the rows. Change it in one place
+and both follow.
+
 **Every target has an owner.** `rationale` and `owner` are required, so no threshold
 is anonymous. Where a customer has no real target, leave `value: null` — the panel
 says "no target set" rather than printing a percentage against a number nobody agreed
@@ -98,10 +103,18 @@ proposal was right, and earns the move to `act` with evidence instead of optimis
 
 ## Adding sources (MACH)
 
-`reads` entries are source ids — `commerce.orders`, `cms.content`, `search.queries`.
-Each resolves to an MCP adapter. Today commerce (commercetools) is implemented; CMS
-and search are declared and unimplemented, so adding one is an adapter plus a line in
-a function definition.
+`reads` entries are source ids — `commerce.orders`, `cms.content`, `search.queries` —
+resolved against `src/sources/index.ts`, which records the MCP that supplies each and
+whether it is actually connected. Commerce statuses are **derived from the data**, so
+the registry cannot claim a connection that is not there.
+
+A declared-but-unconnected source renders an explained empty state where the analysis
+would have gone, rather than silently disappearing — an absent section looks identical
+to "there is no problem here". See `/keystone/sources` for what is connected and what
+each function is waiting on.
+
+**Swapping commerce backend:** add `config/profiles/<id>.json` mapping the fields, set
+`COMMERCE_PROFILE=<id>`. No code changes.
 
 ---
 
@@ -109,7 +122,10 @@ a function definition.
 
 | Looking for | File |
 |---|---|
-| Targets, thresholds, density, permissions | `src/functions/*.ts` |
+| Every tunable number | **`config/policy.json`** — read by both the app and the extractor |
+| Field map for a commerce backend | **`config/profiles/<id>.json`** |
+| Density, permissions, principles, target metadata | `src/functions/*.ts` |
+| Which MCP sources exist and what is connected | `src/sources/index.ts` |
 | Why it behaves as it does | `DECISIONS.md` |
 | What the panel may and may not change | `src/lib/mutations.ts` |
 | Autonomy gate | `src/lib/governance.ts` |

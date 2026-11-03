@@ -1,4 +1,5 @@
 import { FunctionDef } from "../types";
+import { target } from "../policy";
 
 // Operational. Allowed more detail than Spend.
 export const ACCOUNT_CONTINUITY: FunctionDef = {
@@ -29,7 +30,7 @@ export const ACCOUNT_CONTINUITY: FunctionDef = {
       label: "Flag drift when days since last order exceed",
       unit: "count",
       direction: "lower-is-better",
-      value: 1.5,
+      value: target("reorder_drift_multiplier", 1.5),
       rationale: "Multiple of this account's own median gap between order days.",
       owner: "Purchasing",
     },

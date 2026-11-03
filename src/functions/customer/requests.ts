@@ -1,4 +1,5 @@
 import { FunctionDef } from "../types";
+import { target } from "../policy";
 
 // Waiting-on-the-supplier view. Deliberately thin.
 export const ACCOUNT_REQUESTS: FunctionDef = {
@@ -29,7 +30,7 @@ export const ACCOUNT_REQUESTS: FunctionDef = {
       label: "Chase a quote after",
       unit: "days",
       direction: "lower-is-better",
-      value: 5,
+      value: target("chase_after_days", 5),
       rationale: "Past this, a request has usually fallen off someone's desk rather than being worked.",
       owner: "Buyer",
     },

@@ -1,0 +1,202 @@
+{
+  "_comment": [
+    "Single source of truth for every tunable number.",
+    "Read by the TypeScript function definitions (src/functions/*) and by the",
+    "Python extractor (scripts/build-snapshot.py). One file, two languages, so",
+    "a threshold cannot drift between what the panel shows and what it computed.",
+    "Every key here appears as a TargetDef with a named owner in a function."
+  ],
+  "targets": {
+    "max_account_concentration_pct": 20,
+    "quiet_account_multiplier": 1.5,
+    "buyer_concentration_pct": 90,
+    "contract_review_days": 90,
+    "max_price_spread_pct": 25,
+    "min_account_reach": 3,
+    "payment_pending_days": 2,
+    "awaiting_release_days": 1,
+    "ready_not_shipped_days": 5,
+    "ship_pending_days": 3,
+    "quote_cold_days": 3,
+    "second_approver_over": 500000,
+    "limit_to_average_order_ratio": 10,
+    "min_buyers": 2,
+    "reorder_drift_multiplier": 1.5,
+    "chase_after_days": 5
+  },
+  "exceptions": [
+    {
+      "code": "payment-failed",
+      "label": "Payment failed",
+      "when": {
+        "field": "paymentState",
+        "equals": "Failed"
+      },
+      "minAgeDaysFrom": null,
+      "guidance": "Card or terms charge was declined. Confirm the payment method with the account, then retry."
+    },
+    {
+      "code": "balance-due",
+      "label": "Balance due",
+      "when": {
+        "field": "paymentState",
+        "equals": "BalanceDue"
+      },
+      "minAgeDaysFrom": null,
+      "guidance": "Order shipped with an unpaid balance. Route to AR before the next release."
+    },
+    {
+      "code": "payment-pending",
+      "label": "Payment pending",
+      "when": {
+        "field": "paymentState",
+        "equals": "Pending"
+      },
+      "minAgeDaysFrom": "payment_pending_days",
+      "guidance": "Authorised but never captured. Usually a terms account awaiting credit review."
+    },
+    {
+      "code": "awaiting-release",
+      "label": "Awaiting release",
+      "when": {
+        "field": "orderState",
+        "equals": "Open"
+      },
+      "minAgeDaysFrom": "awaiting_release_days",
+      "guidance": "Order was created but never confirmed. Most of these are above a buyer's spend limit."
+    },
+    {
+      "code": "ship-pending",
+      "label": "Shipment pending",
+      "when": {
+        "field": "shipmentState",
+        "equals": "Pending"
+      },
+      "minAgeDaysFrom": "ship_pending_days",
+      "guidance": "Paid and confirmed but not picked. Check stock and the fulfilment queue."
+    },
+    {
+      "code": "ready-not-shipped",
+      "label": "Ready, not shipped",
+      "when": {
+        "field": "shipmentState",
+        "equals": "Ready"
+      },
+      "minAgeDaysFrom": "ready_not_shipped_days",
+      "guidance": "Picked and staged but not dispatched. Usually a carrier booking gap."
+    }
+  ],
+  "quietCluster": {
+    "minOverdueSharePct": 50,
+    "cliffWindowDays": 14,
+    "minAtCliffRatio": 0.6,
+    "_why": "When most quiet accounts stop against the same edge it is a data cliff, not churn. Firing one honest finding beats firing fifty false ones."
+  },
+  "categoryRules": [
+    [
+      "Home & Kitchen",
+      [
+        "waffle",
+        "toaster",
+        "coffeemaker",
+        "blender",
+        "steam-mop",
+        "dustbuster",
+        "hand-vacuum",
+        "kettle",
+        "air-fryer"
+      ]
+    ],
+    [
+      "Outdoor Tools",
+      [
+        "blower",
+        "trimmer",
+        "mower",
+        "chainsaw",
+        "hedge",
+        "pressure-washer"
+      ]
+    ],
+    [
+      "Industrial Storage",
+      [
+        "vidmar",
+        "lista",
+        "cabinet",
+        "workbench",
+        "shelving",
+        "locker",
+        "versatrack",
+        "trackwall"
+      ]
+    ],
+    [
+      "Storage",
+      [
+        "toolbox",
+        "toughsystem",
+        "tote",
+        "tstak",
+        "rolling",
+        "organizer",
+        "crate"
+      ]
+    ],
+    [
+      "Inventory Mgmt",
+      [
+        "cribmaster",
+        "accuport",
+        "bin",
+        "label",
+        "scanner",
+        "dispenser"
+      ]
+    ],
+    [
+      "Fastening",
+      [
+        "anchor",
+        "fastener",
+        "fastening",
+        "lockbolt",
+        "nailer",
+        "stapler",
+        "rivet",
+        "assembly-platform"
+      ]
+    ],
+    [
+      "Hand Tools",
+      [
+        "wrench",
+        "plier",
+        "hammer-tool",
+        "screwdriver",
+        "tape-measure",
+        "level"
+      ]
+    ],
+    [
+      "Power Tools",
+      [
+        "drill",
+        "saw",
+        "driver",
+        "grinder",
+        "sander",
+        "router",
+        "impact",
+        "work-light",
+        "grease-gun",
+        "multi-tool",
+        "rotary",
+        "compressor",
+        "polisher",
+        "vacuum",
+        "oscillating"
+      ]
+    ]
+  ]
+}

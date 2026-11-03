@@ -49841,22 +49841,6 @@
    "lineCount": 2
   },
   {
-   "id": "0df761db-3fd4-4361-a375-5bdc6f82e6a9",
-   "orderNumber": "KS-202609-4097",
-   "createdAt": "2026-09-15T13:56:00.000Z",
-   "month": "2026-09",
-   "ageDays": 41,
-   "businessUnit": "cascade-mechanical",
-   "customerEmail": "priya.raman@cascademech.com",
-   "orderState": "Confirmed",
-   "paymentState": "Pending",
-   "shipmentState": "Ready",
-   "origin": "Customer",
-   "poNumber": "PO-2026-4097",
-   "totalCents": 958340,
-   "lineCount": 7
-  },
-  {
    "id": "93dc829b-aa5d-483b-a84f-ed1be26cc661",
    "orderNumber": "KS-202609-3045",
    "createdAt": "2026-09-15T13:56:00.000Z",
@@ -49871,6 +49855,22 @@
    "poNumber": "PO-2026-3045",
    "totalCents": 45596,
    "lineCount": 2
+  },
+  {
+   "id": "0df761db-3fd4-4361-a375-5bdc6f82e6a9",
+   "orderNumber": "KS-202609-4097",
+   "createdAt": "2026-09-15T13:56:00.000Z",
+   "month": "2026-09",
+   "ageDays": 41,
+   "businessUnit": "cascade-mechanical",
+   "customerEmail": "priya.raman@cascademech.com",
+   "orderState": "Confirmed",
+   "paymentState": "Pending",
+   "shipmentState": "Ready",
+   "origin": "Customer",
+   "poNumber": "PO-2026-4097",
+   "totalCents": 958340,
+   "lineCount": 7
   },
   {
    "id": "3720bf5b-9cc2-45f6-b2ba-e0066df70771",

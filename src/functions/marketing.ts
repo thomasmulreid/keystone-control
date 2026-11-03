@@ -1,4 +1,5 @@
 import { FunctionDef } from "./types";
+import { target } from "./policy";
 
 // Price spread is the number merchandising never gets shown.
 export const MARKETING: FunctionDef = {
@@ -30,7 +31,7 @@ export const MARKETING: FunctionDef = {
       label: "Investigate price spread above",
       unit: "percent",
       direction: "lower-is-better",
-      value: 25,
+      value: target("max_price_spread_pct", 25),
       rationale:
         "Gap between the cheapest and dearest unit price for the same SKU. Tiering explains a two-price spread; it does not explain four.",
       owner: "Merchandising",
@@ -40,7 +41,7 @@ export const MARKETING: FunctionDef = {
       label: "Range-gap when a product reaches fewer accounts than",
       unit: "count",
       direction: "higher-is-better",
-      value: 3,
+      value: target("min_account_reach", 3),
       rationale: "Products most of the book has never been shown.",
       owner: "Merchandising",
     },

@@ -1,0 +1,57 @@
+{
+  "_comment": [
+    "Field map for one commerce backend. Every path the extractor reads lives",
+    "here, so supporting a different MACH commerce system is a new profile",
+    "rather than a rewrite of build-snapshot.py.",
+    "A path is dotted. An array of paths means 'first one present wins'."
+  ],
+  "id": "commercetools",
+  "label": "commercetools",
+
+  "order": {
+    "id": "id",
+    "number": "orderNumber",
+    "businessDate": ["custom.fields.orderDate", "createdAt"],
+    "recordCreatedAt": "createdAt",
+    "totalCents": "totalPrice.centAmount",
+    "accountKey": "businessUnit.key",
+    "storeKey": "store.key",
+    "customerId": "customerId",
+    "customerEmail": "customerEmail",
+    "orderState": "orderState",
+    "paymentState": "paymentState",
+    "shipmentState": "shipmentState",
+    "origin": "origin",
+    "poNumber": "custom.fields.poNumber",
+    "lines": "lineItems"
+  },
+
+  "line": {
+    "sku": "variant.sku",
+    "name": "name.en-US",
+    "qty": "quantity",
+    "unitCents": "price.value.centAmount",
+    "totalCents": "totalPrice.centAmount",
+    "attributes": "variant.attributes",
+    "attributeName": "name",
+    "attributeValue": "value",
+    "brandAttribute": "brand"
+  },
+
+  "quote": {
+    "id": "id",
+    "createdAt": "createdAt",
+    "state": "quoteRequestState",
+    "accountKey": "businessUnit.key",
+    "customerEmail": "customerEmail",
+    "totalCents": "totalPrice.centAmount",
+    "lines": "lineItems",
+    "comment": "comment"
+  },
+
+  "values": {
+    "openQuoteState": "Submitted",
+    "cancelledOrderState": "Cancelled",
+    "recurringOrigin": "RecurringOrder"
+  }
+}

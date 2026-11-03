@@ -1,4 +1,5 @@
 import { FunctionDef } from "./types";
+import { target } from "./policy";
 
 // Ranked by what is at risk, not by what is large.
 export const CRO: FunctionDef = {
@@ -30,7 +31,7 @@ export const CRO: FunctionDef = {
       label: "Quiet when days since last order exceed",
       unit: "count",
       direction: "lower-is-better",
-      value: 1.5,
+      value: target("quiet_account_multiplier", 1.5),
       rationale:
         "Multiple of the account's own median gap between orders. Measured per account because a weekly buyer and a quarterly buyer are not comparable.",
       owner: "CRO",
@@ -40,7 +41,7 @@ export const CRO: FunctionDef = {
       label: "Concentration risk when one buyer places over",
       unit: "percent",
       direction: "lower-is-better",
-      value: 90,
+      value: target("buyer_concentration_pct", 90),
       rationale:
         "Three buyers where one places 97% is a single-buyer account wearing a disguise. Counted by value, not headcount.",
       owner: "CRO",
@@ -50,7 +51,7 @@ export const CRO: FunctionDef = {
       label: "Flag contracts expiring within",
       unit: "days",
       direction: "higher-is-better",
-      value: 90,
+      value: target("contract_review_days", 90),
       rationale: "Renewals are the highest-value thing a commercial team forgets.",
       owner: "CRO",
     },

@@ -1,4 +1,5 @@
 import { FunctionDef } from "../types";
+import { target } from "../policy";
 
 // The only customer view that may change anything.
 export const ACCOUNT_GOVERNANCE: FunctionDef = {
@@ -30,7 +31,7 @@ export const ACCOUNT_GOVERNANCE: FunctionDef = {
       label: "Review spend limit when it exceeds average order by",
       unit: "count",
       direction: "lower-is-better",
-      value: 10,
+      value: target("limit_to_average_order_ratio", 10),
       rationale:
         "A limit many multiples above a typical order can never trigger. Ten is a working default; set it with whoever owns delegated authority.",
       owner: "Account administrator",
@@ -40,7 +41,7 @@ export const ACCOUNT_GOVERNANCE: FunctionDef = {
       label: "Minimum active buyers before continuity risk",
       unit: "count",
       direction: "higher-is-better",
-      value: 2,
+      value: target("min_buyers", 2),
       rationale: "If one person is away, ordering stops. A second buyer removes the single point of failure.",
       owner: "Account administrator",
     },

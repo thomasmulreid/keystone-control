@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Build the control-panel snapshot from raw commercetools reads.
+Build the control-panel snapshot from raw commerce reads.
 
 PROTOTYPE SEAM
 --------------
@@ -18,6 +18,46 @@ from datetime import datetime, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
+
+# --------------------------------------------------------------------------
+# Configuration. Two files, both also read by the TypeScript side, so a
+# threshold cannot drift between what the panel computed and what it claims.
+#
+#   config/policy.json              every tunable number, by target key
+#   config/profiles/<id>.json       field map for one commerce backend
+#
+# Supporting a different MACH commerce system is a new profile, not a rewrite
+# of this file.
+# --------------------------------------------------------------------------
+POLICY = json.load(open(os.path.join(ROOT, "config", "policy.json")))
+PROFILE_ID = os.environ.get("COMMERCE_PROFILE", "commercetools")
+PROFILE = json.load(open(os.path.join(ROOT, "config", "profiles", f"{PROFILE_ID}.json")))
+T = POLICY["targets"]
+V = PROFILE["values"]
+
+
+def path_get(obj, path, default=None):
+    """Resolve a dotted path. A list of paths means first-present-wins."""
+    if isinstance(path, list):
+        for p in path:
+            v = path_get(obj, p)
+            if v not in (None, ""):
+                return v
+        return default
+    cur = obj
+    for part in str(path).split("."):
+        if isinstance(cur, dict):
+            cur = cur.get(part)
+        else:
+            return default
+        if cur is None:
+            return default
+    return cur
+
+
+def threshold(key, fallback=None):
+    """A tunable, by the same key the UI shows as a TargetDef."""
+    return T.get(key, fallback)
 TOOL_RESULTS = os.environ.get("CT_TOOL_RESULTS", "")
 # Snapshot "now" is the most recent event in the data, so ages are never negative.
 # Set at load time in main().
@@ -28,23 +68,7 @@ AS_OF = datetime(2026, 10, 2, tzinfo=timezone.utc)
 # inferred from SKU tokens. In hardening this is replaced by the real category
 # tree via read_categories.
 # --------------------------------------------------------------------------
-CATEGORY_RULES = [
-    # Consumer appliances first: they are the surprise in this catalogue and
-    # must not be swallowed by a broader rule. Surfacing them is the point.
-    ("Home & Kitchen",     ["waffle", "toaster", "coffeemaker", "blender", "steam-mop",
-                            "dustbuster", "hand-vacuum", "kettle", "air-fryer"]),
-    ("Outdoor Tools",      ["blower", "trimmer", "mower", "chainsaw", "hedge", "pressure-washer"]),
-    ("Industrial Storage", ["vidmar", "lista", "cabinet", "workbench", "shelving", "locker",
-                            "versatrack", "trackwall"]),
-    ("Storage",            ["toolbox", "toughsystem", "tote", "tstak", "rolling", "organizer", "crate"]),
-    ("Inventory Mgmt",     ["cribmaster", "accuport", "bin", "label", "scanner", "dispenser"]),
-    ("Fastening",          ["anchor", "fastener", "fastening", "lockbolt", "nailer",
-                            "stapler", "rivet", "assembly-platform"]),
-    ("Hand Tools",         ["wrench", "plier", "hammer-tool", "screwdriver", "tape-measure", "level"]),
-    ("Power Tools",        ["drill", "saw", "driver", "grinder", "sander", "router", "impact",
-                            "work-light", "grease-gun", "multi-tool", "rotary", "compressor",
-                            "polisher", "vacuum", "oscillating"]),
-]
+CATEGORY_RULES = [(name, toks) for name, toks in POLICY["categoryRules"]]
 
 def categorise(sku: str) -> str:
     s = (sku or "").lower()
@@ -94,48 +118,51 @@ def business_date(o):
     The handful of orders with no orderDate are all still Open — genuinely
     recent, not yet finalised — so createdAt is correct for those.
     """
-    od = ((o.get("custom") or {}).get("fields") or {}).get("orderDate")
-    return od if od else o["createdAt"]
+    return path_get(o, PROFILE["order"]["businessDate"]) or o["createdAt"]
 
 
 def normalise_orders(raw):
+    """Raw backend records -> the shape the panel works in, via the profile."""
+    O, L = PROFILE["order"], PROFILE["line"]
     out = []
     for o in raw:
-        bu = (o.get("businessUnit") or {}).get("key")
+        bu = path_get(o, O["accountKey"])
         lines = []
-        for li in o.get("lineItems", []):
-            sku = (li.get("variant") or {}).get("sku")
-            attrs = {a["name"]: a["value"] for a in (li.get("variant") or {}).get("attributes", [])}
-            unit = li["price"]["value"]["centAmount"]
+        for li in path_get(o, O["lines"]) or []:
+            sku = path_get(li, L["sku"])
+            attrs = {
+                a.get(L["attributeName"]): a.get(L["attributeValue"])
+                for a in (path_get(li, L["attributes"]) or [])
+            }
             lines.append({
                 "sku": sku,
-                "name": (li.get("name") or {}).get("en-US", sku),
-                "brand": attrs.get("brand"),
+                "name": path_get(li, L["name"]) or sku,
+                "brand": attrs.get(L["brandAttribute"]),
                 "category": categorise(sku),
-                "qty": li.get("quantity", 0),
-                "unitCents": unit,
-                "totalCents": li["totalPrice"]["centAmount"],
+                "qty": path_get(li, L["qty"], 0),
+                "unitCents": path_get(li, L["unitCents"], 0),
+                "totalCents": path_get(li, L["totalCents"], 0),
             })
         bd = business_date(o)
         out.append({
-            "id": o["id"],
-            "orderNumber": o.get("orderNumber") or f"CT-{o['id'][:8]}",
+            "id": path_get(o, O["id"]),
+            "orderNumber": path_get(o, O["number"]) or f"CT-{str(path_get(o, O['id']))[:8]}",
             # createdAt stays available, but every business figure uses the
             # trading date. Mixing the two is how a dashboard tells a lie.
-            "recordCreatedAt": o["createdAt"],
+            "recordCreatedAt": path_get(o, O["recordCreatedAt"]),
             "createdAt": bd,
             "month": month_key(bd),
             "ageDays": age_days(bd),
             "businessUnit": bu,
-            "store": (o.get("store") or {}).get("key"),
-            "customerId": o.get("customerId"),
-            "customerEmail": o.get("customerEmail"),
-            "orderState": o.get("orderState"),
-            "paymentState": o.get("paymentState"),
-            "shipmentState": o.get("shipmentState"),
-            "origin": o.get("origin"),
-            "poNumber": ((o.get("custom") or {}).get("fields") or {}).get("poNumber"),
-            "totalCents": (o.get("totalPrice") or {}).get("centAmount", 0),
+            "store": path_get(o, O["storeKey"]),
+            "customerId": path_get(o, O["customerId"]),
+            "customerEmail": path_get(o, O["customerEmail"]),
+            "orderState": path_get(o, O["orderState"]),
+            "paymentState": path_get(o, O["paymentState"]),
+            "shipmentState": path_get(o, O["shipmentState"]),
+            "origin": path_get(o, O["origin"]),
+            "poNumber": path_get(o, O["poNumber"]),
+            "totalCents": path_get(o, O["totalCents"], 0),
             "lineCount": len(lines),
             "lines": lines,
         })
@@ -143,18 +170,20 @@ def normalise_orders(raw):
 
 
 def normalise_quotes(raw):
+    Q = PROFILE["quote"]
     out = []
     for q in raw:
+        created = path_get(q, Q["createdAt"])
         out.append({
-            "id": q["id"],
-            "createdAt": q["createdAt"],
-            "ageDays": age_days(q["createdAt"]),
-            "state": q.get("quoteRequestState"),
-            "businessUnit": (q.get("businessUnit") or {}).get("key"),
-            "customerEmail": q.get("customerEmail"),
-            "totalCents": (q.get("totalPrice") or {}).get("centAmount", 0),
-            "lineCount": len(q.get("lineItems", [])),
-            "comment": q.get("comment"),
+            "id": path_get(q, Q["id"]),
+            "createdAt": created,
+            "ageDays": age_days(created),
+            "state": path_get(q, Q["state"]),
+            "businessUnit": path_get(q, Q["accountKey"]),
+            "customerEmail": path_get(q, Q["customerEmail"]),
+            "totalCents": path_get(q, Q["totalCents"], 0),
+            "lineCount": len(path_get(q, Q["lines"]) or []),
+            "comment": path_get(q, Q["comment"]),
         })
     return sorted(out, key=lambda x: x["createdAt"], reverse=True)
 
@@ -237,7 +266,7 @@ def account_rollup(orders, quotes, units, list_rate, contract_rate):
         last = os_[-1]["createdAt"] if os_ else None
         days_since = max(age_days(last), 0) if last else None
         overdue = bool(median_gap and days_since is not None and median_gap > 0
-                       and days_since > median_gap * 1.5)
+                       and days_since > median_gap * threshold("quiet_account_multiplier", 1.5))
 
         # Concentration by VALUE, not headcount. Three buyers where one places
         # 97% of the spend is a single-buyer account wearing a disguise.
@@ -277,12 +306,12 @@ def account_rollup(orders, quotes, units, list_rate, contract_rate):
             "buyerCount": len(buyers),
             "singleBuyer": len(buyers) == 1,
             "topBuyerSharePct": top_share,
-            "effectivelySingleBuyer": len(buyers) == 1 or top_share >= 90,
+            "effectivelySingleBuyer": len(buyers) == 1 or top_share >= threshold("buyer_concentration_pct", 90),
             "lastOrderAt": last,
             "daysSinceLastOrder": days_since,
             "medianGapDays": median_gap,
             "overdue": overdue,
-            "recurringOrders": sum(1 for o in os_ if o["origin"] == "RecurringOrder"),
+            "recurringOrders": sum(1 for o in os_ if o["origin"] == V["recurringOrigin"]),
             "savingsCents": savings,
             "leakageCents": leak,
             "leakageLines": sorted(leak_lines, key=lambda x: -x["overpaidCents"])[:25],
@@ -294,7 +323,7 @@ def account_rollup(orders, quotes, units, list_rate, contract_rate):
             ],
             "overLimitCount": len(over_limit),
             "quoteCount": len(q),
-            "openQuotes": [x for x in q if x["state"] == "Submitted"],
+            "openQuotes": [x for x in q if x["state"] == V["openQuoteState"]],
         })
 
     return sorted(accounts, key=lambda a: -a["revenueCents"])
@@ -304,29 +333,28 @@ def account_rollup(orders, quotes, units, list_rate, contract_rate):
 # Exception desk. Segmented by REASON, because the fix differs per reason —
 # a status-only list is something nobody can act on.
 # --------------------------------------------------------------------------
-REASONS = [
-    ("payment-failed",   "Payment failed",       lambda o: o["paymentState"] == "Failed",
-     "Card or terms charge was declined. Confirm the payment method with the account, then retry."),
-    ("payment-pending",  "Payment pending",      lambda o: o["paymentState"] == "Pending" and o["ageDays"] > 2,
-     "Authorised but never captured. Usually a terms account awaiting credit review."),
-    ("balance-due",      "Balance due",          lambda o: o["paymentState"] == "BalanceDue",
-     "Order shipped with an unpaid balance. Route to AR before the next release."),
-    ("awaiting-release", "Awaiting release",     lambda o: o["orderState"] == "Open" and o["ageDays"] > 1,
-     "Order was created but never confirmed. Most of these are above a buyer's spend limit."),
-    ("ship-pending",     "Shipment pending",     lambda o: o["shipmentState"] == "Pending" and o["ageDays"] > 3,
-     "Paid and confirmed but not picked. Check stock and the fulfilment queue."),
-    ("ready-not-shipped","Ready, not shipped",   lambda o: o["shipmentState"] == "Ready" and o["ageDays"] > 5,
-     "Picked and staged but not dispatched. Usually a carrier booking gap."),
-]
+# Rules come from config/policy.json so an ops lead can retune ageing without
+# touching code — and so the thresholds shown in the UI as TargetDefs are
+# literally the ones that produced the rows.
+REASONS = []
+for _r in POLICY["exceptions"]:
+    _min = threshold(_r["minAgeDaysFrom"], 0) if _r.get("minAgeDaysFrom") else 0
+    REASONS.append((_r["code"], _r["label"], _r["when"]["field"], _r["when"]["equals"],
+                    _min, _r["guidance"]))
+
+
+def matches(order, field, equals, min_age):
+    return order.get(field) == equals and order["ageDays"] >= (min_age or 0)
+
 
 def exception_desk(orders, units):
     unit_index = {u["key"]: u for u in units}
     rows = []
     for o in orders:
-        if o["orderState"] == "Cancelled":
+        if o["orderState"] == V["cancelledOrderState"]:
             continue
-        for code, label, test, guidance in REASONS:
-            if test(o):
+        for code, label, field, equals, min_age, guidance in REASONS:
+            if matches(o, field, equals, min_age):
                 u = unit_index.get(o["businessUnit"]) or {}
                 limit = u.get("buyerLimit")
                 rows.append({
@@ -449,14 +477,14 @@ def main():
         "cliffDate": last_dates[-1] if last_dates else None,
         "atCliff": sum(
             1 for d in last_dates
-            if (datetime.fromisoformat(last_dates[-1]) - datetime.fromisoformat(d)).days <= 14
+            if (datetime.fromisoformat(last_dates[-1]) - datetime.fromisoformat(d)).days <= POLICY["quietCluster"]["cliffWindowDays"]
         ),
         "clustered": bool(
             last_dates
-            and overdue_share >= 50
+            and overdue_share >= POLICY["quietCluster"]["minOverdueSharePct"]
             and sum(1 for d in last_dates
-                    if (datetime.fromisoformat(last_dates[-1]) - datetime.fromisoformat(d)).days <= 14)
-               >= 0.6 * len(last_dates)
+                    if (datetime.fromisoformat(last_dates[-1]) - datetime.fromisoformat(d)).days <= POLICY["quietCluster"]["cliffWindowDays"])
+               >= POLICY["quietCluster"]["minAtCliffRatio"] * len(last_dates)
         ),
         "revenueCents": sum(a["revenueCents"] for a in overdue_accts),
     }
