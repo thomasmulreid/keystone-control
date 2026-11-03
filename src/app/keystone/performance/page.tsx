@@ -1,5 +1,6 @@
 import { Shell, KEYSTONE_NAV } from "@/components/Shell";
 import { CEO } from "@/functions";
+import { governanceMode } from "@/lib/governance";
 import { Tile, SectionHeader, Pill, Table, Td, Bar } from "@/components/ui";
 import { RevenueTrend, CategoryBars } from "@/components/Charts";
 import { WorkQueue } from "@/components/WorkQueue";
@@ -8,13 +9,17 @@ import { keystoneQueue } from "@/lib/queue";
 import { buildPreviews } from "@/lib/previews";
 import { usd, num, pct, signed } from "@/lib/format";
 
-export const revalidate = 300;
+// Rendered per request, not prerendered. GOVERNANCE_MODE decides whether
+// action controls appear at all, and changing it does not invalidate Next's
+// build cache — so a cached page could offer a control the deployment has
+// since forbidden. Correctness beats caching on this one.
+export const dynamic = "force-dynamic";
 
 export default function Performance() {
   const snapshot = liveSnapshot();
   const t = snapshot.totals;
   const items = keystoneQueue(snapshot);
-  const previews = buildPreviews(snapshot, items, "keystone");
+  const previews = buildPreviews(snapshot, items, "keystone", CEO.id);
 
   // Last complete month vs the one before. The extractor already excluded the
   // partial current month, so this is a like-for-like comparison.
@@ -155,7 +160,7 @@ export default function Performance() {
           sub="The three that matter most today. Each carries its evidence and, where the panel may act, the exact change it would make."
           right={<Pill tone="neutral">{items.length} open</Pill>}
         />
-        <WorkQueue items={items} previews={previews} scope="keystone" accountKey={null} max={CEO.display.queueMax} compact={CEO.display.queueCompact} />
+        <WorkQueue mode={governanceMode()} items={items} previews={previews} scope="keystone" accountKey={null} max={CEO.display.queueMax} compact={CEO.display.queueCompact} />
       </section>
     </Shell>
   );

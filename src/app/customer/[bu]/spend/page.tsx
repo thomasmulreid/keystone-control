@@ -1,6 +1,8 @@
 import { Rows } from "@/components/Rows";
 import { notFound } from "next/navigation";
 import { Shell, customerNav } from "@/components/Shell";
+import { ACCOUNT_SPEND } from "@/functions";
+import { governanceMode } from "@/lib/governance";
 import { Tile, SectionHeader, Pill, Table, Td } from "@/components/ui";
 import { RevenueTrend, CategoryBars } from "@/components/Charts";
 import { WorkQueue } from "@/components/WorkQueue";
@@ -9,7 +11,11 @@ import { customerQueue } from "@/lib/queue";
 import { buildPreviews } from "@/lib/previews";
 import { usd, usdExact, usdCompact, num, pct, shortDate } from "@/lib/format";
 
-export const revalidate = 300;
+// Rendered per request, not prerendered. GOVERNANCE_MODE decides whether
+// action controls appear at all, and changing it does not invalidate Next's
+// build cache — so a cached page could offer a control the deployment has
+// since forbidden. Correctness beats caching on this one.
+export const dynamic = "force-dynamic";
 
 export default async function Spend({ params }: { params: Promise<{ bu: string }> }) {
   const snapshot = liveSnapshot();
@@ -18,7 +24,7 @@ export default async function Spend({ params }: { params: Promise<{ bu: string }
   if (!a) notFound();
 
   const items = customerQueue(a, snapshot);
-  const previews = buildPreviews(snapshot, items, "customer");
+  const previews = buildPreviews(snapshot, items, "customer", ACCOUNT_SPEND.id);
 
   // What the relationship is worth, stated the way a purchasing manager has to
   // justify it internally: money off list, as a rate, with the gap named.
@@ -84,7 +90,7 @@ export default async function Spend({ params }: { params: Promise<{ bu: string }
             right={<Pill tone="warn">{usd(a.leakageCents)} recoverable</Pill>}
           />
           <Table head={["Product", "Order", "Date", "Qty", "You paid", "Your rate", "Difference"]}>
-            <Rows cap={5} label="lines">
+            <Rows cap={ACCOUNT_SPEND.display.tableRows} label="lines">
             {a.leakageLines.slice(0, 10).map((l, i) => (
               <tr key={i} className="border-b border-line last:border-0 hover:bg-sunk/60 transition-colors">
                 <Td align="left"><span className="font-medium">{l.name}</span></Td>
@@ -118,8 +124,9 @@ export default async function Spend({ params }: { params: Promise<{ bu: string }
           right={<Pill tone="neutral">{items.length} open</Pill>}
         />
         <WorkQueue
-          max={3}
-          compact
+          mode={governanceMode()}
+          max={ACCOUNT_SPEND.display.queueMax}
+          compact={ACCOUNT_SPEND.display.queueCompact}
           items={items}
           previews={previews}
           scope="customer"

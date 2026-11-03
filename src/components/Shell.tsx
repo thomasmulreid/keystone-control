@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import { liveSnapshot, customerAccounts } from "@/lib/snapshot";
 import { ScopeSwitcher } from "./ScopeSwitcher";
 import { longDate } from "@/lib/format";
+import { governanceMode, MODE_COPY } from "@/lib/governance";
 
 /* ------------------------------------------------------------------
    The chrome.
@@ -77,9 +78,9 @@ export function Shell({
             <span className="hidden lg:inline">{snapshot.project}</span>
             <span
               className="rounded-full border border-line px-2 py-[3px]"
-              title="Approving an action records the decision and the exact payload, but sends nothing to commercetools."
+              title={MODE_COPY[governanceMode()].detail}
             >
-              writes off
+              {MODE_COPY[governanceMode()].badge}
             </span>
           </div>
         </div>

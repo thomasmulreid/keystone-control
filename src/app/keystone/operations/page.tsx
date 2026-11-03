@@ -1,4 +1,6 @@
 import { Shell, KEYSTONE_NAV } from "@/components/Shell";
+import { OPERATIONS } from "@/functions";
+import { governanceMode } from "@/lib/governance";
 import { Tile, SectionHeader, Pill, Table, Td } from "@/components/ui";
 import { Rows } from "@/components/Rows";
 import { WorkQueue } from "@/components/WorkQueue";
@@ -13,7 +15,11 @@ const REASON_ORDER = [
   "awaiting-release", "ship-pending", "ready-not-shipped",
 ];
 
-export const revalidate = 300;
+// Rendered per request, not prerendered. GOVERNANCE_MODE decides whether
+// action controls appear at all, and changing it does not invalidate Next's
+// build cache — so a cached page could offer a control the deployment has
+// since forbidden. Correctness beats caching on this one.
+export const dynamic = "force-dynamic";
 
 export default function Operations() {
   const snapshot = liveSnapshot();
@@ -21,7 +27,7 @@ export default function Operations() {
   const items = keystoneQueue(snapshot).filter((i) =>
     ["release-queue", "ar-queue", "dispatch-queue", "quote-queue"].includes(i.id) || i.id.startsWith("quote-"),
   );
-  const previews = buildPreviews(snapshot, items, "keystone");
+  const previews = buildPreviews(snapshot, items, "keystone", OPERATIONS.id);
 
   const groups = REASON_ORDER
     .map((r) => ({ reason: r, rows: ex.filter((e) => e.reason === r) }))
@@ -64,6 +70,7 @@ export default function Operations() {
           sub="Ranked by value against age. Where this panel is allowed to make the change, the button shows you the exact payload first."
         />
         <WorkQueue
+          mode={governanceMode()}
           items={items}
           previews={previews}
           scope="keystone"
@@ -92,7 +99,7 @@ export default function Operations() {
                   </p>
                 </div>
                 <Table head={["Order", "Account", "Buyer", "PO", "Placed", "Age", "Value"]}>
-                  <Rows cap={5} label="orders">
+                  <Rows cap={OPERATIONS.display.tableRows} label="orders">
                   {rows.slice(0, 10).map((e) => (
                     <tr key={e.id} className="border-b border-line last:border-0 hover:bg-sunk/60 transition-colors">
                       <Td align="left">

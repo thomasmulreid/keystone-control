@@ -21,7 +21,7 @@ export interface AuditRecord {
   accountKey: string | null;
   mutationId: string;
   title: string;
-  /** false when CT_WRITE_ENABLED is not set: previewed and approved, not sent. */
+  /** false outside act mode: previewed and approved, but not sent. */
   executed: boolean;
   result: "dry-run" | "applied" | "failed" | "blocked";
   message: string;

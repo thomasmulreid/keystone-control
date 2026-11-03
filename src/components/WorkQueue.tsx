@@ -37,6 +37,7 @@ export function WorkQueue({
   emptyBody,
   max,
   compact,
+  mode = "propose",
 }: {
   items: QueueItem[];
   previews: Record<string, RunnablePreview>;
@@ -48,6 +49,8 @@ export function WorkQueue({
   max?: number;
   /** Headline density: title, one line of why, the number. No next-step prose. */
   compact?: boolean;
+  /** Deployment autonomy. Passed from the server; the client cannot read env. */
+  mode?: "observe" | "propose" | "act";
 }) {
   const [open, setOpen] = useState<string | null>(null);
   const [done, setDone] = useState<Record<string, string>>({});
@@ -95,6 +98,7 @@ export function WorkQueue({
                     runnable={item.run ? previews[item.id] : undefined}
                     doneMsg={done[item.id]}
                     compact={compact}
+                    mode={mode}
                     onReview={() => setOpen(item.id)}
                   />
                 ))}
@@ -131,13 +135,14 @@ export function WorkQueue({
 /* ---------------------------------- card --------------------------------- */
 
 function Card({
-  item, runnable, doneMsg, onReview, compact,
+  item, runnable, doneMsg, onReview, compact, mode,
 }: {
   item: QueueItem;
   runnable?: RunnablePreview;
   doneMsg?: string;
   onReview: () => void;
   compact?: boolean;
+  mode?: "observe" | "propose" | "act";
 }) {
   const [showEvidence, setShowEvidence] = useState(false);
 
@@ -214,6 +219,14 @@ function Card({
           )}
         </div>
 
+        {/* In observe mode an actionable item still shows — hiding it would
+            misrepresent the work. What is withheld is the control, and the
+            panel says so rather than leaving a gap. */}
+        {!runnable && item.run && mode === "observe" && (
+          <span className="shrink-0 rounded-lg border border-line bg-sunk px-3 py-1.5 text-[12px] font-medium text-faint">
+            read only
+          </span>
+        )}
         {runnable && !doneMsg && (
           <button
             onClick={onReview}

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Shell, KEYSTONE_NAV } from "@/components/Shell";
+import { CRO } from "@/functions";
+import { governanceMode } from "@/lib/governance";
 import { Tile, SectionHeader, Pill, Table, Td, Definition } from "@/components/ui";
 import { Rows } from "@/components/Rows";
 import { Sparkline } from "@/components/Charts";
@@ -63,7 +65,7 @@ export default function Accounts() {
           }
         />
         <Table head={["Account", "Revenue", "Trend", "Rhythm", "Depends on", "Flags"]}>
-          <Rows cap={8} label="accounts">
+          <Rows cap={CRO.display.tableRows} label="accounts">
           {accts.slice(0, 14).map((a) => {
             const spark = Object.entries(a.monthly).sort(([x], [y]) => x.localeCompare(y)).map(([, v]) => v);
             return (

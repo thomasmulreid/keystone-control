@@ -1,6 +1,8 @@
 import { Rows } from "@/components/Rows";
 import { notFound } from "next/navigation";
 import { Shell, customerNav } from "@/components/Shell";
+import { ACCOUNT_GOVERNANCE } from "@/functions";
+import { governanceMode } from "@/lib/governance";
 import { Tile, SectionHeader, Pill, Table, Td, Bar, Empty } from "@/components/ui";
 import { WorkQueue } from "@/components/WorkQueue";
 import {getAccount, liveSnapshot, accountKeys } from "@/lib/snapshot";
@@ -16,7 +18,11 @@ const ROLE_NOTE: Record<string, string> = {
   buyer: "Places orders within their limit.",
 };
 
-export const revalidate = 300;
+// Rendered per request, not prerendered. GOVERNANCE_MODE decides whether
+// action controls appear at all, and changing it does not invalidate Next's
+// build cache — so a cached page could offer a control the deployment has
+// since forbidden. Correctness beats caching on this one.
+export const dynamic = "force-dynamic";
 
 export default async function Governance({ params }: { params: Promise<{ bu: string }> }) {
   const snapshot = liveSnapshot();
@@ -27,7 +33,7 @@ export default async function Governance({ params }: { params: Promise<{ bu: str
   const items = customerQueue(a, snapshot).filter((i) =>
     ["own-limit", "own-concentration", "divisions"].includes(i.id),
   );
-  const previews = buildPreviews(snapshot, items, "customer");
+  const previews = buildPreviews(snapshot, items, "customer", ACCOUNT_GOVERNANCE.id);
 
   const limitDead = a.buyerLimit !== null && a.buyerLimit * 100 > a.revenueCents;
   const approvers = a.associates.filter((x) => x.role === "approver" || x.role.includes("admin"));
@@ -114,7 +120,7 @@ export default async function Governance({ params }: { params: Promise<{ bu: str
           sub="Roles come from commercetools associate assignments. The spend column is what each person has actually ordered, which is usually the more interesting number."
         />
         <Table head={["Person", "Role", "What that allows", "Spend", "Share"]}>
-          <Rows cap={5} label="people">
+          <Rows cap={ACCOUNT_GOVERNANCE.display.tableRows} label="people">
           {a.associates.map((as) => {
             const buyer = a.buyers.find((b) => b.email.includes(as.id.slice(0, 4)));
             return (
@@ -194,6 +200,7 @@ export default async function Governance({ params }: { params: Promise<{ bu: str
           sub="Changes you can make yourself. Keystone sees the same fields and the same audit trail."
         />
         <WorkQueue
+          mode={governanceMode()}
           items={items}
           previews={previews}
           scope="customer"

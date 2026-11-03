@@ -1,4 +1,5 @@
 import { Snapshot, getAccount } from "./snapshot";
+import { canOffer } from "./governance";
 import { QueueItem } from "./queue";
 import {
   MUTATIONS, previewRelease, previewLimit, previewQuote, Preview, MutationDef,
@@ -25,6 +26,13 @@ export function buildPreviews(
   snapshot: Snapshot,
   items: QueueItem[],
   scope: "keystone" | "customer",
+  /**
+   * Which function is asking. Governance gates on both the deployment mode
+   * and this function's own allowlist, so a CEO view offers nothing even in
+   * act mode. Omitted means "no function context" — nothing is offered,
+   * because a caller that cannot say who it is has not earned an action.
+   */
+  functionId?: string,
 ): Record<string, Runnable> {
   const out: Record<string, Runnable> = {};
 
@@ -32,6 +40,7 @@ export function buildPreviews(
     if (!item.run) continue;
     const def = MUTATIONS[item.run.mutationId];
     if (!def) continue;
+    if (!functionId || !canOffer(functionId, def.id)) continue;
 
     if (def.id === "release-held-order") {
       const rows = snapshot.exceptions.filter((e) => e.reason === "awaiting-release");

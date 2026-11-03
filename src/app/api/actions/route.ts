@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { MUTATIONS, WRITE_ENABLED, Preview } from "@/lib/mutations";
+import { MUTATIONS, Preview } from "@/lib/mutations";
+import { governanceMode, writesEnabled } from "@/lib/governance";
 import { record } from "@/lib/audit";
 
 /* ------------------------------------------------------------------
@@ -7,14 +8,16 @@ import { record } from "@/lib/audit";
 
    The gate order matters and is deliberate:
 
-     1. Is this a mutation we recognise?   -> unknown ids are never run
-     2. Did a guardrail block it?          -> blocked beats everything
-     3. Is writing enabled at all?         -> default is NO
-     4. Only then, send it.
+     1. Is the deployment even allowed to act?  -> observe mode refuses
+     2. Is this a mutation we recognise?        -> unknown ids never run
+     3. Did a guardrail block it?               -> blocked beats everything
+     4. Is writing enabled?                     -> only in act mode
+     5. Only then, send it.
 
-   Step 3 means a demo cannot mutate a live project by accident. Writes
-   require CT_WRITE_ENABLED=true AND credentials that are scoped to
-   exactly the mutation being run — never an admin key.
+   GOVERNANCE_MODE is the single switch: observe | propose | act. It
+   defaults to propose, so a missing or misspelt value can never be the
+   reason something wrote to a production project. Writes also require
+   credentials scoped to exactly the mutation being run.
    ------------------------------------------------------------------ */
 
 export async function POST(req: NextRequest) {
@@ -25,6 +28,15 @@ export async function POST(req: NextRequest) {
     accountKey: string | null;
     operator?: string;
   };
+
+  // Gate 1: a read-only deployment refuses at the door. The UI hides the
+  // controls too, but the server must never rely on the UI for this.
+  if (governanceMode() === "observe") {
+    return NextResponse.json(
+      { error: "This deployment is in observe mode. No actions can be taken." },
+      { status: 403 },
+    );
+  }
 
   const def = MUTATIONS[body.mutationId];
   if (!def) {
@@ -50,7 +62,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ record: r }, { status: 200 });
   }
 
-  if (!WRITE_ENABLED) {
+  if (!writesEnabled()) {
     const r = record({
       operator: body.operator ?? "demo.operator@orium.com",
       scope: body.scope,
@@ -60,8 +72,8 @@ export async function POST(req: NextRequest) {
       executed: false,
       result: "dry-run",
       message:
-        "Approved and recorded. Nothing was sent to commercetools because writes are disabled " +
-        "(CT_WRITE_ENABLED is not true). The payload above is exactly what would have been sent.",
+        "Approved and recorded. Nothing was sent because this deployment is in propose mode. " +
+        "The payload above is exactly what would have been sent in act mode.",
       changes: body.preview.changes,
       apiCall: body.preview.apiCall,
       reversal: body.preview.reversal,

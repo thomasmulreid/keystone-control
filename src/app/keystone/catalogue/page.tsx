@@ -1,4 +1,6 @@
 import { Shell, KEYSTONE_NAV } from "@/components/Shell";
+import { MARKETING } from "@/functions";
+import { governanceMode } from "@/lib/governance";
 import { Tile, SectionHeader, Pill, Table, Td, Bar } from "@/components/ui";
 import { Rows } from "@/components/Rows";
 import { CategoryBars } from "@/components/Charts";
@@ -76,7 +78,7 @@ export default function Catalogue() {
           right={<Pill tone="warn">{spread.length} SKUs</Pill>}
         />
         <Table head={["Product", "Prices", "Lowest", "Highest", "Spread", "Accounts", "Revenue"]}>
-          <Rows cap={6} label="products">
+          <Rows cap={MARKETING.display.tableRows} label="products">
           {spread.slice(0, 12).map((s) => (
             <tr key={s.sku} className="border-b border-line last:border-0 hover:bg-sunk/60 transition-colors">
               <Td align="left">
@@ -114,7 +116,7 @@ export default function Catalogue() {
           sub="Strong revenue concentrated in very few accounts. In B2B this is almost never a demand ceiling — it is a range-breadth problem, and it is the cheapest growth available."
         />
         <Table head={["Product", "Accounts", "Units", "Revenue", "Last sold"]}>
-          <Rows cap={5} label="products">
+          <Rows cap={MARKETING.display.tableRows} label="products">
           {narrow.slice(0, 10).map((s) => (
             <tr key={s.sku} className="border-b border-line last:border-0 hover:bg-sunk/60 transition-colors">
               <Td align="left">

@@ -22,8 +22,9 @@
    - The preview shows the literal update actions that will be sent.
      If you cannot show the payload, you cannot ship the button.
    - Every run is recorded with before/after and a named reversal.
-   - Writes are OFF unless CT_WRITE_ENABLED=true. The default is dry-run,
-     so a demo can never mutate a live project by accident.
+   - Autonomy is set per deployment by GOVERNANCE_MODE (see lib/governance).
+     The default is propose, so a demo can never mutate a live project by
+     accident.
    ================================================================== */
 
 export type Scope = "keystone" | "customer" | "both";
@@ -315,4 +316,3 @@ export function previewQuote(i: QuoteInput): Preview {
   };
 }
 
-export const WRITE_ENABLED = process.env.CT_WRITE_ENABLED === "true";

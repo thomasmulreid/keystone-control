@@ -1,6 +1,8 @@
 import { Rows } from "@/components/Rows";
 import { notFound } from "next/navigation";
 import { Shell, customerNav } from "@/components/Shell";
+import { ACCOUNT_CONTINUITY } from "@/functions";
+import { governanceMode } from "@/lib/governance";
 import { Tile, SectionHeader, Pill, Table, Td, Empty } from "@/components/ui";
 import {getAccount, liveSnapshot, accountKeys } from "@/lib/snapshot";
 import { usd, usdCompact, num, days, shortDate } from "@/lib/format";
@@ -69,7 +71,7 @@ export default async function Continuity({ params }: { params: Promise<{ bu: str
         />
         {stopped.length ? (
           <Table head={["Order", "PO", "Placed", "Waiting", "What is holding it", "Value"]}>
-            <Rows cap={5} label="orders">
+            <Rows cap={ACCOUNT_CONTINUITY.display.tableRows} label="orders">
             {stopped.slice(0, 15).map((e) => (
               <tr key={e.id} className="border-b border-line last:border-0 hover:bg-sunk/60 transition-colors">
                 <Td align="left"><span className="font-mono text-[12px]">{e.orderNumber}</span></Td>
@@ -104,7 +106,7 @@ export default async function Continuity({ params }: { params: Promise<{ bu: str
         />
         {recurring.length ? (
           <Table head={["Order", "Placed", "Buyer", "State", "Value"]}>
-            <Rows cap={5} label="orders">
+            <Rows cap={ACCOUNT_CONTINUITY.display.tableRows} label="orders">
             {recurring.slice(-10).reverse().map((o) => (
               <tr key={o.id} className="border-b border-line last:border-0">
                 <Td align="left"><span className="font-mono text-[12px]">{o.orderNumber}</span></Td>

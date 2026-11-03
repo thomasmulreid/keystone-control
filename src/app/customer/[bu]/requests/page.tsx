@@ -1,6 +1,8 @@
 import { Rows } from "@/components/Rows";
 import { notFound } from "next/navigation";
 import { Shell, customerNav } from "@/components/Shell";
+import { ACCOUNT_REQUESTS } from "@/functions";
+import { governanceMode } from "@/lib/governance";
 import { Tile, SectionHeader, Pill, Table, Td, Empty } from "@/components/ui";
 import {getAccount, liveSnapshot, accountKeys } from "@/lib/snapshot";
 import { usd, usdCompact, num, days, shortDate } from "@/lib/format";
@@ -69,7 +71,7 @@ export default async function Requests({ params }: { params: Promise<{ bu: strin
         />
         {mine.length ? (
           <Table head={["Submitted", "Requested by", "Lines", "Value", "Age", "State"]}>
-            <Rows cap={6} label="requests">
+            <Rows cap={ACCOUNT_REQUESTS.display.tableRows} label="requests">
             {mine.slice(0, 12).map((q) => (
               <tr key={q.id} className="border-b border-line last:border-0 hover:bg-sunk/60 transition-colors">
                 <Td align="left">
