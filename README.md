@@ -9,6 +9,9 @@ and auditable set of changes. Built conversationally; no engineer wrote it.
 
 **Live demo:** https://keystone-control-dun.vercel.app
 
+**Demoing this to a customer?** Read [DEMO-GUIDE.md](DEMO-GUIDE.md) — a 10-minute
+script, the questions you will get, and the things not to claim. No technical prep.
+
 ---
 
 ## Run it
