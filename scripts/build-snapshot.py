@@ -13,7 +13,7 @@ and run this on a schedule (or on demand) into a cache. Everything below
 Every derived number carries its own definition in DEFINITIONS so the UI can
 show "how is this calculated?" next to the figure. No metric ships without one.
 """
-import json, os, sys, glob, statistics, collections, calendar
+import json, os, sys, glob, statistics, collections, calendar, re
 from datetime import datetime, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -107,6 +107,28 @@ def age_days(s):                  return (AS_OF - dt(s)).days
 def month_key(s):                 return s[:7]
 
 
+REAL_PERSON_EMAIL = re.compile(r"^[a-z]+\.[a-z]+@orium\.com$")
+DEMO_PREFIXES = ("company.", "demo.", "buyer.", "super.", "a.", "b.")
+
+
+def redact_identity(email):
+    """Keep real colleagues out of a repository that may be public.
+
+    The demo project is seeded with synthetic buyers, but a few real Orium
+    addresses have found their way in. They are indistinguishable from the
+    rest to the panel and identifying to a search engine, so they are
+    replaced at extraction time rather than scrubbed after the fact. A
+    refresh must not quietly reintroduce them.
+    """
+    if not email:
+        return email
+    low = str(email).lower()
+    if REAL_PERSON_EMAIL.match(low) and not low.startswith(DEMO_PREFIXES):
+        local = low.split("@")[0].split(".")[0]
+        return f"{local}.buyer@demo.invalid"
+    return email
+
+
 def business_date(o):
     """When the business says the order happened.
 
@@ -156,7 +178,7 @@ def normalise_orders(raw):
             "businessUnit": bu,
             "store": path_get(o, O["storeKey"]),
             "customerId": path_get(o, O["customerId"]),
-            "customerEmail": path_get(o, O["customerEmail"]),
+            "customerEmail": redact_identity(path_get(o, O["customerEmail"])),
             "orderState": path_get(o, O["orderState"]),
             "paymentState": path_get(o, O["paymentState"]),
             "shipmentState": path_get(o, O["shipmentState"]),
@@ -180,7 +202,7 @@ def normalise_quotes(raw):
             "ageDays": age_days(created),
             "state": path_get(q, Q["state"]),
             "businessUnit": path_get(q, Q["accountKey"]),
-            "customerEmail": path_get(q, Q["customerEmail"]),
+            "customerEmail": redact_identity(path_get(q, Q["customerEmail"])),
             "totalCents": path_get(q, Q["totalCents"], 0),
             "lineCount": len(path_get(q, Q["lines"]) or []),
             "comment": path_get(q, Q["comment"]),
@@ -288,7 +310,7 @@ def account_rollup(orders, quotes, units, list_rate, contract_rate):
             "id": u.get("id"),
             "name": u["name"],
             "city": u.get("city"), "state": u.get("state"),
-            "contactEmail": u.get("contactEmail"),
+            "contactEmail": redact_identity(u.get("contactEmail")),
             "store": u.get("store"),
             "buyerLimit": limit,
             "limitExceededBehavior": u.get("limitExceededBehavior"),
