@@ -1,246 +1,301 @@
 # Demo guide — Keystone Control
 
-For Ana. Everything you need to run this in front of a customer, with no technical
-prep. **https://keystone-control-dun.vercel.app**
+For Ana. **https://keystone-control-dun.vercel.app**
 
-Read the two-minute version, then the script. The rest is there for when someone asks
-something hard.
-
----
-
-## The two-minute version
-
-**What it is:** a working control panel over a live B2B commerce business. It reads
-real orders, finds real money, and can make a defined set of real changes.
-
-**Why it matters:** no engineer built it. It was made in conversation with an AI that
-can reach the actual systems through MCP. That is the pitch — *the people who
-understand the business can now build the tools for it.*
-
-**The one line to open with:**
-
-> "This is a real commerce business with 58 trade accounts and $55 million of orders.
-> Everything you're about to see was built by talking to an AI. No developer touched
-> it. Let me show you what it found."
-
-**What makes it land:** not the dashboard. The moment it tells you what it *refuses*
-to do.
+This is not a product demo. It is the Commercial Autonomy argument, made concrete
+enough that someone can click it. Read Part 1 before you read the script — if you only
+demo the screens, you've shown a dashboard, and the room will price it like one.
 
 ---
 
-## Before you start (60 seconds)
+# Part 1 — The story
 
-1. Open **https://keystone-control-dun.vercel.app** — check it loads.
-2. You will see an amber banner: *"Data to Oct 26, 2026 — 17 days ago."* **This is
-   fine and it is on purpose.** See *The banner* below for your line.
-3. Have the second tab ready on `/keystone/operations` so you can switch fast.
+## The problem they already have but haven't named
 
-That's it. Nothing to install, no login, no VPN.
+> "Most enterprises aren't short of good opportunities. They're short of capacity to
+> decide and act on them. More channels, more products, more customers, more
+> decisions than any team can route and prioritise by hand."
+
+That's the **Coordination Ceiling**, and your job in the first two minutes is to make
+them recognise it in their own business. Not define it — recognise it.
+
+**Ask, don't tell:**
+> "How many decisions a week does your team *know* it should be making but doesn't get
+> to? Pricing that should move weekly and moves quarterly. Accounts nobody noticed went
+> quiet. Content gaps nobody has time to find."
+
+**Why now:** agents are already landing in their business, team by team — service,
+merchandising, content, fulfilment. Three agents is manageable. Thirty is where it
+breaks, because one agent can't see what another depends on. Most enterprises cross
+that line in the next 18–36 months, not by choosing to, but because every team is
+adding agents right now to solve its own problem.
+
+> "Waiting doesn't preserve optionality. It hands the coordination problem to whoever
+> solves it first."
+
+**The composability bridge** — important, because many of these buyers bought
+composable from us:
+> "Composable solved how fast you can *change* your systems. The ceiling is about how
+> much you can *do at once*. Hitting it doesn't mean composable failed. It means the
+> next constraint became visible."
+
+## What this thing actually is
+
+**Commercial Autonomy** is the destination — commercial systems that sense, decide and
+act with decreasing human intervention, while staying accountable to human judgment.
+We don't sell it. It's the operating model they're moving toward.
+
+What Orium builds is a **commercial operating system**: the software, data and talent
+that let a business make and execute commercial decisions continuously, instead of
+routing every one through a person.
+
+**Keystone Control is one, built end to end, that you can click.**
+
+**The test to use out loud** — this is the sharpest line in the whole pitch:
+> "If every one of your employees disappeared for an hour, would this system keep
+> making commercial decisions that affect revenue, inventory, pricing or fulfilment?
+> That's the test. A CRM fails it. A project tool fails it. This passes it."
+
+## What to actually claim
+
+| Say | Don't say |
+|---|---|
+| A demonstrator of the operating model | A client deployment |
+| Built in conversation, no engineers | "Nobody needs engineers" |
+| It proposes; a human approves | "It's autonomous" |
+| We're ahead of this | "We're experimenting with this" |
+
+The brand should feel **ahead, not experimental; ambitious, not fantastical;
+provocative, but evidenced.** You're not selling to innovators — they'd build this
+themselves. You're selling to people who need it to be real.
 
 ---
 
-## The 10-minute demo
+# Part 2 — The demo (10 minutes)
 
-Five beats. Each has what to click, what to say, and the point you're making.
+Five beats. Each proves one strategic point. The screens are evidence; the point is the
+sentence attached to each.
 
-### 1 · The homepage — set the frame (1 min)
+### 1 · Homepage — name the ceiling (1 min)
 
 **Click:** the home page.
 
 **Say:**
-> "Four numbers. 58 trading accounts, $55 million of live order data, zero engineers,
-> and five actions it's allowed to take. Hold on to that last one, it's the
-> interesting bit."
-
-**Point:** this is not a mock-up. It's reading a real commerce project.
-
----
-
-### 2 · The CEO view — "it tells you what's wrong, not what happened" (2 min)
-
-**Click:** *Open the demo* → lands on **Performance**.
-
-**Say:**
-> "This is what a CEO opens. Three numbers, not twelve. Revenue, concentration — and
-> $2.6 million of revenue that has stopped moving. That's already sold. Nobody has to
-> sell it again. Most dashboards would never show you that."
-
-**Point:** density follows the job. Scroll to the work queue — three items, nothing
-else.
-
-> "Three things that matter today. Not a report. A to-do list with evidence attached."
-
----
-
-### 3 · Operations — **the one that wins the room** (3 min)
-
-**Click:** *Operations* in the nav.
-
-**Say:**
-> "This is where the ops team lives, so it's allowed to be dense. Everything that's
-> stopped, grouped by *what's actually wrong with it* — not by status. Because the fix
-> is different for each one."
-
-**Now the important bit.** Point at the biggest item — *$2.5M authorised but never
-captured* — and the blue tag that says **routes to Accounts receivable**.
-
-**Say:**
-> "That's the single biggest pile of money on the screen, and there is no button for
-> it. Look — *'This panel will not change it.'* Marking an order paid when the money
-> hasn't arrived would hide a real debt behind a green tick. So it hands it to AR and
-> says why.
+> "Real commerce business. 58 trade accounts, $55 million of orders, two years of
+> trading. Four numbers up top — and the one that matters is the last: five actions
+> this system is *allowed* to take. Hold that thought.
 >
-> That's the thing to take away. It's not that the AI can do everything. It's that it
-> knows what it isn't allowed to touch."
+> Everything here was built by talking to an AI that can reach the actual systems. No
+> engineer touched it."
 
-**Then scroll to the bottom** — *"What this panel will and will not change."*
-
-> "Two columns. What it can change, and what it refuses. This is the conversation you'd
-> have on day one of a real deployment."
-
-**Point:** trust comes from restraint. This is the slide people remember.
+**Proves:** the capacity ceiling moved. Not "we built a tool" — *the constraint
+changed.*
 
 ---
 
-### 4 · Flip to the customer's side (2 min)
+### 2 · CEO view — the decision finds you (2 min)
 
-**Click:** the **Customer** toggle in the header → Company A → **Governance**.
-
-Notice the whole page turns teal. Let them see that.
+**Click:** *Open the demo* → **Performance**.
 
 **Say:**
-> "Same data, same engine — the customer's side of the glass. And it found this."
+> "Three numbers, not twelve, because this is what a CEO opens. Revenue,
+> concentration, and $2.6 million of revenue that has stopped moving — already sold,
+> going nowhere.
+>
+> Nobody went looking for that. Nobody built a report. The system surfaced it."
+
+Scroll to the work queue — three items.
+
+> "That's the shift. Today someone has to *go and find* the decision. Here the system
+> surfaces the right decision and the person makes it. That's what removes the
+> coordination tax."
+
+**Proves:** systems that surface decisions instead of requiring someone to find them.
+
+---
+
+### 3 · Operations — **the beat that wins the room** (3 min)
+
+**Click:** *Operations*.
+
+**Say:**
+> "Ops lives here, so it's dense on purpose. Everything stopped, grouped by *what's
+> wrong with it* — not by status — because the fix differs every time."
+
+Point at the biggest item — *$2.5M authorised but never captured* — and the blue tag
+**routes to Accounts receivable**.
+
+> "Biggest number on the screen. And there's no button for it. Read it: *'This panel
+> will not change it.'* Marking an order paid when the money hasn't arrived would hide
+> a real debt behind a green tick. So it hands it to AR and says why.
+>
+> That's the whole argument. Not that the AI can do everything — that it knows what it
+> isn't allowed to touch."
+
+**Now the governance ladder** — scroll to *what this panel will and will not change*.
+
+> "Three modes. **Observe** — reads only, changes nothing. **Propose** — composes the
+> exact change, shows you the payload, records the decision, sends nothing.
+> **Act** — it goes through, under credentials scoped to that one action.
+>
+> You start in observe. You run propose for as long as it takes to see how often it was
+> right. You move to act with evidence, one action at a time.
+>
+> That ladder is the thing that gets this past your risk committee. Most people selling
+> you agents will show you the demo. Ask them what their observe mode looks like."
+
+**Proves:** assurance — not that it worked once, but that you can prove it keeps
+working. This is what moves a buyer from "interesting" to "deployable."
+
+---
+
+### 4 · The customer's side — the ceiling crosses the boundary (2 min)
+
+**Click:** **Customer** toggle → Company A → **Governance**. Let them see the whole
+page turn teal.
+
+**Say:**
+> "Same engine, same data — the customer's side of the glass. And it found this."
 
 Point at the amber box: **"Your approval gate has never fired."**
 
-> "Their spend limit is a million dollars. Their average order is seven and a half
-> thousand. That limit is 135 times a typical order — nobody has ever needed a second
-> signature. The control exists, it just can't fire.
+> "Their spend limit is a million dollars. Their average order is $7,422. That limit is
+> 135 times a typical order — nobody has ever needed a second signature. The control
+> exists; it cannot fire.
 >
-> On the supplier's side, their commercial team sees the same field flagged as a
-> conversation to have. One commercetools field, read from two directions. Neither
-> side has to ring the other to find out what's going on."
+> On the supplier's side, the commercial team sees the same field as a conversation to
+> have. One field, two readings. Neither side rings the other to find out."
 
-**Point:** this is the bit nobody else shows.
+> "The coordination ceiling isn't only inside your four walls. It's between you and
+> everyone you trade with. That's usually where it's worst."
 
-**If you have time**, click **Spend** and show the $26,941 table — every line with an
+**If time:** click **Spend**, show the $26,941 table — 25 lines, every one with an
 order number.
 
-> "They were charged above a rate they'd already been given, 25 times. Each row is a
-> credit they can ask for. The supplier sees the identical lines flagged as *their*
-> pricing error. The conversation starts from an agreed number instead of an argument
-> about whose spreadsheet is right."
+> "Charged above a rate they'd already been given. Each row is a credit they can ask
+> for; the supplier sees the identical rows flagged as their own pricing error. The
+> conversation starts from an agreed number instead of an argument about spreadsheets."
+
+**Proves:** coordination across organisational boundaries, which is where most of it
+leaks.
 
 ---
 
-### 5 · Sources — the MACH close (2 min)
+### 5 · Sources — the four pillars (2 min)
 
-**Click:** back to **Keystone** → **Sources**.
+**Click:** **Keystone** → **Sources**.
 
 **Say:**
-> "Commerce is connected — that's commercetools over MCP. Content and search are
-> declared but not connected yet, and the panel says so rather than quietly leaving
-> the section out.
+> "Commerce is connected — commercetools over MCP. Content and search are **live and
+> reachable**; this panel just hasn't ingested them yet, and it says so rather than
+> quietly leaving the section out.
 >
-> That's the extensibility story. Point your CMS MCP at it, point your search MCP at
-> it, and those light up. For you that's Contentstack and Algolia. It's a config entry,
-> not a project."
+> Behind that is Contentstack with 22 content types and Algolia exposing top searches
+> and the ones returning nothing. Zero-result searches are a merchandising backlog that
+> writes itself."
+
+**Then the pillars:**
+> "Four pillars: agentic systems, commerce and financial infrastructure, content and
+> experience, and data and context. You can enter through any one of them. Most people
+> start with the one that hurts.
+>
+> This is the same architecture whichever door you come in — that's why it's an
+> operating system and not four projects."
 
 **Close:**
-> "Everything here was built in conversation. The thing that limits how many of these
-> you have isn't engineering capacity any more — it's knowing what to ask for. That's
-> the part your commercial team already has."
+> "The limit on how many of these you have isn't engineering capacity any more. It's
+> knowing what to ask for. That's what your commercial team already has — and that's
+> what we mean when we say the ceiling on capacity is gone."
 
 ---
 
-## The banner — your line for it
+# Part 3 — Questions you will get
 
-The amber bar at the top says the data is 17 days old. **Do not apologise for it.**
-It is a feature and a good one:
+**"Is this real, or a mock-up?"**
+> Real. 2,666 orders, 58 accounts, two years, from a live commercetools project. Every
+> number is computed from it — the footer on each page says what it read.
 
-> "See that? It's telling you the data is seventeen days old, and every 'days waiting'
-> figure below is counted against today, not against when the snapshot was taken.
->
-> The first version of this got that wrong — a quote that had been waiting four weeks
-> still said three days. Someone working that queue would have been reading fiction. So
-> now it says, out loud, how old its own picture is."
+**"Is this running in a client?"**
+> No, and be straight about it. It's a demonstrator of the operating model, built on a
+> real commerce project. Our client proof is specific and real — Trail Appliances got a
+> 9× lift in add-to-cart from comparison and Q&A agents; Indeed's Contentstack
+> migration grew mid-engagement into AI-generated content and SEO running at runtime,
+> absorbed inside the same fixed fee. **Don't imply this panel is one of them.**
 
-That answer usually earns more credibility than fresh data would have.
-
-If you'd rather demo on fresh data, ask Thomas to re-run the snapshot — it takes a few
-minutes and needs the commercetools connection.
-
----
-
-## Questions you will get
-
-**"Is this real or a mock-up?"**
-> Real. 2,666 orders, 58 accounts, two years of trading, from a live commercetools
-> project. Every number on the page is computed from it — the footer on each page says
-> exactly what it read.
-
-**"Can it actually change anything, or is that a screenshot?"**
-> It can, and right now it's deliberately switched off. There are three modes —
-> *observe* (read-only), *propose* (shows you the exact change and records the
-> decision, sends nothing), and *act*. This is in propose. You'd start in observe.
-> Click *Review* on any action and you'll see the literal payload it would send.
-> **Do click one.** The drawer is the most convincing thing in the product.
+**"Can it actually change anything?"**
+> Yes, and it's deliberately switched off. Click *Review* on any action — the drawer
+> shows the literal payload it would send. **Do click one.** It's the most convincing
+> thing in the product.
 
 **"What stops it doing something stupid?"**
-> Four things. It only ever proposes — a person approves. The approval is a separate
-> step from the detection. Every action has an allowlist per role, so the CEO view
-> can't change anything at all even in act mode. And every run is recorded with a
-> before, an after, and how to undo it.
+> Four things. It only proposes — a person approves. Approval is a separate step from
+> detection. Every role has an allowlist, so the CEO view can't change anything even in
+> act mode. And every run is recorded with a before, an after and how to undo it.
+
+**"How is this different from a GSI doing the same thing?"**
+> Be honest, it lands better. Strong today: commerce expertise, composable
+> architecture, 250+ specialists, a fixed-fee model that absorbs real scope change, and
+> the ecosystem — commercetools, Stripe, Contentstack, MACH Alliance. Still being
+> built: the packaged operating layer, and the assurance track record. What you're
+> looking at is the first of that, not the finished version.
 
 **"How long did this take?"**
-> Days, in conversation. The honest version: the structure took longer than the screens,
-> because deciding what it's *not* allowed to do is the real work.
+> Days, in conversation. The honest version: the structure took longer than the
+> screens, because deciding what it's *not* allowed to do is the real work.
 
-**"Could we have one?"**
-> Yes — it's a template. Four functions, one file each, with your targets and your
-> thresholds. Swapping commerce backend is a config file. That's a Thomas conversation.
-
-**"What about our stack — we're not on commercetools."**
-> The field mapping is a config file. Another backend is a new profile, not a rewrite.
-> Worth saying that honestly: it's designed for it and it hasn't been done yet for a
-> second system.
+**"We're not on commercetools."**
+> The field mapping is a config file — another backend is a new profile, not a rewrite.
+> Designed for it; not yet done for a second system.
 
 **"Who sets the thresholds?"**
-> You do. Every one has a named owner in the config — quote goes cold after three days,
-> second approver above five thousand. Those are our placeholders, not advice. Setting
-> them properly is part of the engagement.
+> They do. Every one has a named owner in config. Ours are placeholders, not advice.
+
+**"Where would we start?"**
+> Any pillar. Observe mode, one function, one real decision their team makes by hand
+> today. Not a platform programme.
 
 ---
 
-## Do not say
+# Part 4 — Do not say
 
-- ❌ **"It's fully autonomous."** It isn't, and that's the selling point. It proposes;
-  a human approves.
-- ❌ **"It writes to your live systems today."** Writes are off. Say *propose mode*.
-- ❌ **"No one needs engineers any more."** Say: the constraint moves from engineering
-  capacity to knowing what to ask for.
-- ❌ **Don't promise CMS or search working.** They're declared, not connected. The
-  Sources page is honest about it — stay on that side of the line.
-- ❌ **Don't quote the thresholds as best practice.** They're placeholders with our
+- ❌ **"It's autonomous."** It proposes; a human approves. That's the selling point.
+- ❌ **"It writes to your live systems."** Writes are off — say *propose mode*.
+- ❌ **"Nobody needs engineers."** Say: the constraint moves from engineering capacity
+  to knowing what to ask for.
+- ❌ **"This is running at a client."** It isn't. Use Trail Appliances, Big Ass Fans or
+  Indeed for client proof.
+- ❌ **"Superhuman Leverage."** That's our internal line, for our people. The
+  market-facing idea is **Infinite Company** — an enterprise no longer bounded by how
+  much it can coordinate by hand.
+- ❌ **Don't quote our thresholds as best practice.** They're placeholders with our
   names on them.
 
 ---
 
-## If something goes wrong
+# The banner — your line for it
 
-**Site won't load** — it's on Vercel, no login. Try the URL fresh. If it's genuinely
-down, message Thomas; it's a one-command redeploy.
+The amber bar says the data is ~19 days old. **Don't apologise. It's the credibility
+moment.**
 
-**A number looks wrong** — check the banner date. Everything in days is measured
-against today, so an old snapshot makes ages large. That's correct behaviour, not a bug.
+> "It's telling you its own data is nineteen days old, and every 'days waiting' figure
+> below is counted against today rather than against the snapshot. An early version got
+> that wrong — a quote waiting four weeks still said three days. Someone working that
+> queue would have been reading fiction.
+>
+> A system you're going to give autonomy to has to be honest about what it doesn't
+> know. That bar is what that looks like."
 
-**Someone asks something you can't answer** — "Good question, I don't want to guess —
-let me get you a straight answer." Nobody has ever lost a deal that way, and this
-product's whole argument is about not overclaiming.
+To demo on fresh data, ask Thomas to re-run the snapshot.
 
 ---
 
-## The one sentence, if you only get one
+# If you only get one sentence
 
-> "It found $2.6 million of stopped revenue and $27,000 the customer was overcharged —
+> "It found $2.6 million of stopped revenue and $27,000 a customer was overcharged —
 > and the most important thing on the screen is the button it refuses to give you."
+
+# If you only get one idea
+
+> "The ceiling on how much your business can do at once isn't your systems any more,
+> and it isn't your people. It's how much they can coordinate by hand. That ceiling is
+> what's lifting."

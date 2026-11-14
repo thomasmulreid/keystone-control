@@ -21,9 +21,17 @@ export type SourceSystem = "commerce" | "cms" | "search" | "inventory" | "pim";
 export type SourceStatus =
   /** Connected and present in the current snapshot. */
   | "connected"
+  /**
+   * The MCP is live and the data is reachable — the panel has not ingested
+   * it yet. This is a deliberately separate state from "unimplemented":
+   * one is a day of work against a live connection, the other is a question
+   * of whether the system can reach it at all. Collapsing them understates
+   * what a stack already supports.
+   */
+  | "available"
   /** Known adapter, but no credentials or no data in this deployment. */
   | "not-connected"
-  /** Declared by a function but no adapter exists yet. */
+  /** No adapter and no live connection. */
   | "unimplemented";
 
 export interface SourceDef {

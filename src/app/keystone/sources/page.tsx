@@ -8,12 +8,14 @@ export const revalidate = 300;
 
 const TONE = {
   connected: "pos",
+  available: "info",
   "not-connected": "warn",
   unimplemented: "neutral",
 } as const;
 
 const STATUS_LABEL = {
   connected: "connected",
+  available: "MCP live, not ingested",
   "not-connected": "no data",
   unimplemented: "not built",
 } as const;
@@ -38,10 +40,10 @@ export default function Sources() {
           hint={`of ${SOURCES.length} known sources`}
         />
         <Tile
-          label="Declared, not available"
-          value={num(SOURCES.length - connected.length)}
-          tone="warn"
-          hint="functions ask for these and get an empty state"
+          label="Reachable, not ingested"
+          value={num(SOURCES.filter((s) => s.status === "available").length)}
+          tone="neutral"
+          hint="MCP is live — a day of work each, not a question of whether it can"
         />
         <Tile
           label="Unknown ids"

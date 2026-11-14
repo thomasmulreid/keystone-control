@@ -144,7 +144,7 @@ export default function Catalogue() {
         <section className="mt-7">
           <SectionHeader
             title="Not connected yet"
-            sub="This view declares these sources. Until an MCP supplies them the analysis below them cannot run — so the gap is stated rather than left looking like an absence of problems."
+            sub="This view declares these sources. The MCPs are live and the data is reachable — the panel has not ingested it yet. Stated plainly, because a missing section looks identical to an absence of problems."
           />
           <div className="grid gap-3 md:grid-cols-2">
             {gaps.map((g) => (

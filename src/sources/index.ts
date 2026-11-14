@@ -84,8 +84,11 @@ export const SOURCES: SourceDef[] = [
     label: "Content",
     provides: "Page completeness, personalisation and journey coverage.",
     mcp: "contentstack",
-    status: "unimplemented",
-    whenMissing: "Merchandising sees what sells, but not whether the content supporting it exists.",
+    status: "available",
+    whenMissing:
+      "The Contentstack MCP is connected and this storefront's stack is readable — 22 content types, " +
+      "including the page and component types behind every journey step. The panel has not ingested it yet, " +
+      "so merchandising can see what sells but not whether the content supporting it exists.",
   },
   {
     id: "search.queries",
@@ -93,9 +96,11 @@ export const SOURCES: SourceDef[] = [
     label: "Search queries",
     provides: "Zero-result searches, especially manufacturer part numbers.",
     mcp: "algolia",
-    status: "unimplemented",
+    status: "available",
     whenMissing:
-      "Zero-result searches are the merchandising backlog that writes itself. Without this, range gaps only surface once someone fails to buy.",
+      "The Algolia MCP is connected and exposes top searches and the filters that return nothing. " +
+      "Zero-result searches are the merchandising backlog that writes itself — until the panel ingests them, " +
+      "range gaps only surface once someone has already failed to buy.",
   },
 ];
 
