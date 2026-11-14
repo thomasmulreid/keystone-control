@@ -7,7 +7,7 @@ own side of the account.
 It reads live data through MCP, surfaces what needs a decision, and can make a defined
 and auditable set of changes. Built conversationally; no engineer wrote it.
 
-**Live demo:** https://keystone-control-dun.vercel.app
+**Live demo:** https://commercial-autonomy-dashboard.vercel.app
 
 **Demoing this to a customer?** Read [DEMO-GUIDE.md](DEMO-GUIDE.md) — a 10-minute
 script, the questions you will get, and the things not to claim. No technical prep.
@@ -140,6 +140,41 @@ including attributing revenue by record date instead of trading date, which put 
 a year in one month and looked entirely convincing.
 
 ---
+
+## Contributing
+
+The repository is private. Ask Thomas for collaborator access, then:
+
+```bash
+git clone https://github.com/thomasmulreid/keystone-control
+npm install
+npm run dev
+```
+
+It boots on committed data, so it runs immediately with nothing connected.
+
+**Where to change things**
+
+| What | File |
+|---|---|
+| Any tunable number | `config/policy.json` |
+| A role's density, targets, permissions, principles | `src/functions/<role>.ts` |
+| Field map for a commerce backend | `config/profiles/<id>.json` |
+| Which MCP sources exist and their status | `src/sources/index.ts` |
+
+After editing config, run `python3 scripts/check-config.py`. It guards the
+single-source-of-truth property and catches three failure modes that have each
+happened at least once, including a target silently reading a different key.
+
+**Pushing to `main` deploys to production.** The repo is connected to the Vercel
+project `commercial-autonomy-dashboard` on the Orium Pro team, so a merge goes live
+on the demo URL. Work on a branch, open a PR, and check the Vercel preview before
+merging. If a customer demo is imminent, do not merge.
+
+**Read `DECISIONS.md` before changing the extractor.** It records the mistakes,
+including two findings that silently stopped rendering when the data moved. The
+principle worth carrying: a finding whose truth depends on a drifting number will
+eventually be wrong in front of a customer.
 
 ## Not yet done
 
