@@ -5,7 +5,7 @@ import { ACCOUNT_GOVERNANCE } from "@/functions";
 import { governanceMode } from "@/lib/governance";
 import { Tile, SectionHeader, Pill, Table, Td, Bar, Empty } from "@/components/ui";
 import { WorkQueue } from "@/components/WorkQueue";
-import {getAccount, liveSnapshot, accountKeys } from "@/lib/snapshot";
+import { getAccount, liveSnapshot, accountKeys, gateNeverFired } from "@/lib/snapshot";
 import { customerQueue } from "@/lib/queue";
 import { buildPreviews, suggestedLimit } from "@/lib/previews";
 import { usd, usdCompact, num, pct } from "@/lib/format";
@@ -35,7 +35,11 @@ export default async function Governance({ params }: { params: Promise<{ bu: str
   );
   const previews = buildPreviews(snapshot, items, "customer", ACCOUNT_GOVERNANCE.id);
 
-  const limitDead = a.buyerLimit !== null && a.buyerLimit * 100 > a.revenueCents;
+  // No order has ever reached the limit, and the limit is many multiples of a
+  // typical order. Threshold comes from this function's own target.
+  const ratioLimit = ACCOUNT_GOVERNANCE.targets.find((t) => t.key === "limit_to_average_order_ratio")?.value ?? 10;
+  const gate = gateNeverFired(a, ratioLimit);
+  const limitDead = gate !== null;
   const approvers = a.associates.filter((x) => x.role === "approver" || x.role.includes("admin"));
   const proposed = suggestedLimit(a.aovCents);
 
@@ -56,7 +60,7 @@ export default async function Governance({ params }: { params: Promise<{ bu: str
           tone={limitDead ? "warn" : "neutral"}
           hint={a.limitExceededBehavior === "pending" ? "orders above it go to an approver" : "no behaviour set"}
           definition={snapshot.definitions.overLimit}
-          foot={limitDead ? "Higher than your entire year of spend, so it can never trigger." : undefined}
+          foot={gate ? `${gate.ratio}x a typical order on this account, so nothing reaches it.` : undefined}
         />
         <Tile
           label="People on the account"
@@ -83,10 +87,9 @@ export default async function Governance({ params }: { params: Promise<{ bu: str
           <div className="border-b border-line bg-warn-soft px-4 py-3">
             <h2 className="text-[14px] font-semibold text-warn">Your approval gate has never fired</h2>
             <p className="mt-1 max-w-[80ch] text-[12.5px] leading-[1.6] text-warn">
-              The limit is set to {usd(a.buyerLimit! * 100)}. You have spent {usd(a.revenueCents)} in total
-              this year across {a.orderCount} orders, and your largest single order was well under the limit.
-              Nothing has ever needed a second signature, so in practice there is no control — only the
-              appearance of one.
+              The limit is set to {usd(a.buyerLimit! * 100)} — {gate!.ratio} times a typical order on this
+              account. Across {a.orderCount} orders, not one has ever reached it, so nothing has needed a
+              second signature. In practice there is no control here, only the appearance of one.
             </p>
           </div>
           <div className="grid gap-4 p-4 sm:grid-cols-3">

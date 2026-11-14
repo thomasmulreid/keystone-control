@@ -4,7 +4,7 @@ import { CRO } from "@/functions";
 import { Tile, SectionHeader, Pill, Table, Td, Definition } from "@/components/ui";
 import { Rows } from "@/components/Rows";
 import { Sparkline } from "@/components/Charts";
-import { liveSnapshot } from "@/lib/snapshot";
+import { liveSnapshot, gateNeverFired } from "@/lib/snapshot";
 import { usd, usdCompact, pct, days, num } from "@/lib/format";
 
 export const revalidate = 300;
@@ -15,7 +15,7 @@ export default function Accounts() {
   const quiet = accts.filter((a) => a.overdue);
   const onOne = accts.filter((a) => a.effectivelySingleBuyer && a.revenueCents > 0);
   const toothless = accts.filter(
-    (a) => a.buyerLimit !== null && a.revenueCents > 0 && a.buyerLimit * 100 > a.revenueCents,
+    (a) => gateNeverFired(a, 10) !== null,
   );
 
   return (

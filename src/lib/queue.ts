@@ -1,4 +1,4 @@
-import { Snapshot, Account } from "./snapshot";
+import { Snapshot, Account, gateNeverFired } from "./snapshot";
 
 /* ==================================================================
    WORK QUEUE
@@ -143,9 +143,7 @@ export function keystoneQueue(snapshot: Snapshot): QueueItem[] {
   }
 
   // 5. Governance: limits set so high they are not limits.
-  const toothless = snapshot.accounts.filter(
-    (a) => a.buyerLimit !== null && a.revenueCents > 0 && a.buyerLimit * 100 > a.revenueCents,
-  );
+  const toothless = snapshot.accounts.filter((a) => gateNeverFired(a, 10) !== null);
   for (const a of toothless.slice(0, 2)) {
     items.push({
       id: `limit-${a.key}`,
@@ -271,17 +269,18 @@ export function customerQueue(a: Account, snapshot: Snapshot): QueueItem[] {
   const ex = snapshot.exceptions.filter((e) => e.businessUnit === a.key);
 
   // 1. Governance — their own limit, read from their side.
-  if (a.buyerLimit !== null && a.buyerLimit * 100 > a.revenueCents && a.revenueCents > 0) {
+  const ownGate = gateNeverFired(a, 10);
+  if (ownGate) {
     items.push({
       id: "own-limit",
-      title: `One person can spend ${usd(a.buyerLimit * 100)} without a second signature`,
-      why: `Your per-order limit is higher than everything this account has spent all year (${usd(a.revenueCents)} across ${a.orderCount} orders). Nothing can ever reach an approver, so no order is being checked.`,
+      title: `One person can spend ${usd(a.buyerLimit! * 100)} without a second signature`,
+      why: `Your per-order limit is ${ownGate.ratio} times a typical order on this account, and in ${a.orderCount} orders not one has ever reached it. Nothing is going to an approver, so no order is being checked.`,
       impactCents: a.revenueCents,
       impactLabel: "spend with no approval step",
       urgency: "now",
       confidence: "high",
       evidence: [
-        { label: "Current limit", value: usd(a.buyerLimit * 100) },
+        { label: "Current limit", value: usd(a.buyerLimit! * 100) },
         { label: "Your average order", value: usd(a.aovCents) },
         { label: "Buyers on the account", value: String(a.buyerCount) },
         { label: "Share placed by one person", value: pct(a.topBuyerSharePct) },

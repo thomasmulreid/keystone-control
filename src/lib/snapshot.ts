@@ -176,3 +176,27 @@ export const MONTH_LABEL: Record<string, string> = {
 export function monthLabel(m: string): string {
   return MONTH_LABEL[m.slice(5, 7)] ?? m;
 }
+
+/* ------------------------------------------------------------------
+   "The approval gate has never fired."
+
+   The first version tested whether the limit exceeded the account's
+   ANNUAL SPEND. That was a proxy, and it broke the moment an account
+   out-spent its own limit over a year — the finding silently vanished
+   even though it was still true.
+
+   The real signal is simpler and does not decay: no order has ever
+   reached the limit, and the limit sits far above a typical order.
+   The multiple comes from the governance function's own target, so
+   a customer can tune what "far above" means.
+   ------------------------------------------------------------------ */
+export function gateNeverFired(
+  a: Account,
+  ratioThreshold: number,
+): { fired: false; ratio: number } | null {
+  if (a.buyerLimit === null || a.aovCents <= 0 || a.orderCount === 0) return null;
+  if (a.overLimitCount > 0) return null;
+  const ratio = Math.round((a.buyerLimit * 100) / a.aovCents);
+  if (ratio < ratioThreshold) return null;
+  return { fired: false, ratio };
+}
