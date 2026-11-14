@@ -143,7 +143,7 @@ a year in one month and looked entirely convincing.
 
 ## Contributing
 
-The repository is private. Ask Thomas for collaborator access, then:
+The repository is public. Clone it and run it without asking anyone:
 
 ```bash
 git clone https://github.com/thomasmulreid/keystone-control
@@ -152,6 +152,13 @@ npm run dev
 ```
 
 It boots on committed data, so it runs immediately with nothing connected.
+
+To push changes back you need collaborator access — ask Thomas. Otherwise fork and
+open a pull request. Anyone can deploy their own copy to Vercel; deploying to the
+Orium demo URL needs access to the Orium Pro team.
+
+The demo deployment is password protected. The password is not in this repository,
+because the repository is public. Ask Thomas or check the team password manager.
 
 **Where to change things**
 
