@@ -1450,5 +1450,630 @@
     "role": "admin"
    }
   ]
+ },
+ {
+  "key": "granite-manufacturing-353",
+  "id": "3af621a8-ba6e-47c3-82fb-22cb59587aec",
+  "name": "Granite Manufacturing",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Mobile",
+  "state": "AL",
+  "contactEmail": "ap@granitemanufacturing353.com",
+  "buyerLimit": 5000000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "406f1d58-6990-4f32-abbc-9b03ac82e970",
+    "role": "admin"
+   },
+   {
+    "id": "c3131feb-abf4-45ac-8a3e-ed7c5a8b7d11",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "cascade-mechanical-354",
+  "id": "b8c046d6-cfbe-40ce-8614-995c4d1175f0",
+  "name": "Cascade Mechanical",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Augusta",
+  "state": "GA",
+  "contactEmail": "ap@cascademechanical354.com",
+  "buyerLimit": 5000000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "126afb78-12a4-4f60-a9a7-6a0ff5e20f8f",
+    "role": "admin"
+   },
+   {
+    "id": "7664f7f7-d4b0-497d-8835-58a69bcfe779",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "ironside-facilities-group-355",
+  "id": "074912dd-9502-45e9-9804-66085c05c2a1",
+  "name": "Ironside Facilities Group",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Mobile",
+  "state": "AL",
+  "contactEmail": "ap@ironsidefacilitiesgroup355.com",
+  "buyerLimit": 5000000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "3167075e-ca72-4180-89de-7f27c879c82e",
+    "role": "admin"
+   },
+   {
+    "id": "8dd679e9-e992-457b-99ef-d8d625b83afa",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "copperline-manufacturing-356",
+  "id": "39ea84c0-3328-419c-b5c8-4785b479e15f",
+  "name": "Copperline Manufacturing",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Akron",
+  "state": "OH",
+  "contactEmail": "ap@copperlinemanufacturing356.com",
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "9ab5e021-0943-403e-8461-7c18a772810f",
+    "role": "admin"
+   },
+   {
+    "id": "b46c292a-38e0-47b7-a6c1-ec66fa87d970",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "bedrock-manufacturing-357",
+  "id": "73e3a5d6-8d33-41f1-bc7c-694b3145272b",
+  "name": "Bedrock Manufacturing",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Lubbock",
+  "state": "TX",
+  "contactEmail": "ap@bedrockmanufacturing357.com",
+  "buyerLimit": 7500000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "d5ba80eb-e815-4a5c-be7d-f3c38534c522",
+    "role": "admin"
+   },
+   {
+    "id": "f5a9e7c7-2ae5-47b2-973d-11d2aba23c65",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "lakeshore-fabrication-358",
+  "id": "35957fbe-1fa1-44a3-a7df-c03381074bd6",
+  "name": "Lakeshore Fabrication",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Augusta",
+  "state": "GA",
+  "contactEmail": "ap@lakeshorefabrication358.com",
+  "buyerLimit": 5000000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "a4378eae-51c4-4576-ba9c-769b501d719f",
+    "role": "admin"
+   },
+   {
+    "id": "c9cc5623-49e7-4ee7-af6e-a68e53258692",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "granite-utilities-359",
+  "id": "a3acf4f2-d0ba-455a-b28f-4a833ac72601",
+  "name": "Granite Utilities",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Salem",
+  "state": "OR",
+  "contactEmail": "ap@graniteutilities359.com",
+  "buyerLimit": 10000000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "a9ea7dcc-ab67-4f48-b78c-a9539c66481e",
+    "role": "admin"
+   },
+   {
+    "id": "006961fe-7f16-4263-8ee2-25e0a13b1470",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "granite-contracting-360",
+  "id": "9e472e8a-9d9e-477b-b17e-c754481de0c3",
+  "name": "Granite Contracting",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Spokane",
+  "state": "WA",
+  "contactEmail": "ap@granitecontracting360.com",
+  "buyerLimit": 5000000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "443b7a66-9556-4cd8-b59f-7a4e19ed93ee",
+    "role": "admin"
+   },
+   {
+    "id": "a8f7e0bb-0038-4334-9f20-cbdf8c68dc60",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oi-copperline",
+  "id": "7c24eb6f-4ca0-4cc6-8a82-da9d275a6602",
+  "name": "Copperline Building Supply",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Dallas",
+  "state": "TX",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "aca1b7bd-9dac-40a6-9089-9f891a29fd23",
+    "role": "buyer"
+   },
+   {
+    "id": "dc9c7129-e641-4558-87e2-e88fefc19916",
+    "role": "approver"
+   }
+  ]
+ },
+ {
+  "key": "oi-granite-peak",
+  "id": "dd74e2f1-d9b5-4529-9460-8ad672520da1",
+  "name": "Granite Peak Distribution",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Sparks",
+  "state": "NV",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "f2b62baf-6703-40bd-a027-b5880b26c2ad",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oi-harborview",
+  "id": "728f1310-fbbf-4b5c-b5bc-cef614853c82",
+  "name": "Harborview Hardware Cooperative",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Savannah",
+  "state": "GA",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "4dc12917-f7bd-4428-b85c-442629862220",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oi-laurentide",
+  "id": "c13d860a-d1ee-4839-b8f9-9dfeb05b79d5",
+  "name": "Laurentide Tool Distributors",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Laval",
+  "state": "QC",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "e6872bff-53c3-4b62-b966-279cd4729614",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oi-bayfront",
+  "id": "ff23b97f-8cab-4003-a6b4-29dd46c804c6",
+  "name": "Bayfront Mechanical Ltd.",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Mississauga",
+  "state": "ON",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "dd760804-36f3-4fa7-b0b7-37b9d5176757",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oi-ridgeway",
+  "id": "35ad94db-fb29-4317-bccf-cc18c5c3863e",
+  "name": "Ridgeway Facility Services",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Phoenix",
+  "state": "AZ",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "0110c4d8-1059-4a58-accd-b98516589547",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oi-tallgrass",
+  "id": "76373b15-17b9-40c9-8602-61e3f2a011f5",
+  "name": "Tallgrass Contractor Supply",
+  "unitType": "Company",
+  "parent": null,
+  "store": "KEYSTONE-B2B",
+  "city": "Lincoln",
+  "state": "NE",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": []
+ },
+ {
+  "key": "oi-flintlock",
+  "id": "c55c64b5-ac13-4cb7-8cc7-a143a33638ad",
+  "name": "Flintlock Site Services",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Albuquerque",
+  "state": "NM",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "ccffb496-c1c6-46e9-85ff-2d70edf6b62c",
+    "role": "buyer"
+   },
+   {
+    "id": "0a0a33b9-b56a-4e6c-948e-eeb3614a07a9",
+    "role": "buyer"
+   },
+   {
+    "id": "5b5845ac-86d8-4aff-9e50-931e692e115d",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oi-juniper-hollow",
+  "id": "72fe13c5-ed4d-4017-bca9-ec00c7bf29f6",
+  "name": "Juniper Hollow Interiors",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-b-store",
+  "city": "Spokane",
+  "state": "WA",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "e1dc2769-baaf-4bce-b264-6bdbe5f1d69b",
+    "role": "buyer"
+   },
+   {
+    "id": "e59bf78d-9a83-4ff4-8b13-58d584850870",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oi-ferrocasa",
+  "id": "a200db8a-5a19-4402-8331-43c81f10bb8f",
+  "name": "Ferrocasa Distribuciones S.A. de C.V.",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Laredo",
+  "state": "TX",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "168f8c6d-97e6-4ec2-a148-dd20c830db4c",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oi-palmera",
+  "id": "7a2f2279-6136-48b7-9dbd-8e7ef8cb737b",
+  "name": "Palmera Industrial Supply",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Doral",
+  "state": "FL",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "386cd683-9ab3-47de-8137-9a53c8a81f77",
+    "role": "buyer"
+   },
+   {
+    "id": "8cb8c676-6fe8-4751-aa74-e3c458420cc4",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oi-kestrel",
+  "id": "1b7bf46d-e7d3-4248-b45b-6a0f175aed8e",
+  "name": "Kestrel Property Maintenance",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Columbus",
+  "state": "OH",
+  "contactEmail": null,
+  "buyerLimit": 150000,
+  "limitExceededBehavior": "pending",
+  "associates": [
+   {
+    "id": "b4996b38-bb04-48b5-9f79-0acb8740a27b",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oi-cumbre-norte",
+  "id": "8a9b6e0a-e038-495e-9a21-dfa8749ef64d",
+  "name": "Ferreter\u00eda Cumbre Norte",
+  "unitType": "Company",
+  "parent": null,
+  "store": "company-a-store",
+  "city": "Monterrey",
+  "state": "NL",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "c5f1e224-06f5-4848-be29-23210f463d93",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oi-copperline-austin",
+  "id": "84f901e2-e9cc-49d9-89c5-59a49c7176ab",
+  "name": "Copperline Building Supply - Austin",
+  "unitType": "Division",
+  "parent": "oi-copperline",
+  "store": "company-a-store",
+  "city": "Austin",
+  "state": "TX",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "435a39b9-b638-40be-8606-6957090a651c",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oi-copperline-tulsa",
+  "id": "e9fff3d7-6bb1-4ca2-b3d2-4652cab04ed3",
+  "name": "Copperline Building Supply - Tulsa",
+  "unitType": "Division",
+  "parent": "oi-copperline",
+  "store": "company-a-store",
+  "city": "Tulsa",
+  "state": "OK",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "69e53959-388c-425b-b31c-475ad7823f5d",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oi-copperline-boise",
+  "id": "e6e3f388-a23e-4b52-977e-93cb50b33d86",
+  "name": "Copperline Building Supply - Boise",
+  "unitType": "Division",
+  "parent": "oi-copperline",
+  "store": "company-a-store",
+  "city": "Boise",
+  "state": "ID",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "a2cddabd-ab58-4db3-876f-7cb573696710",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oi-ridgeway-phoenix",
+  "id": "d0b9c477-4f7b-43fd-b9a0-8dd21bb90ca2",
+  "name": "Ridgeway Facility Services - Phoenix",
+  "unitType": "Division",
+  "parent": "oi-ridgeway",
+  "store": "company-a-store",
+  "city": "Phoenix",
+  "state": "AZ",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "d08ceb04-4924-4fa7-8841-1beb46ddb2e6",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oi-ridgeway-tucson",
+  "id": "6b48d8e5-f5a4-471f-b9cf-76028253d472",
+  "name": "Ridgeway Facility Services - Tucson",
+  "unitType": "Division",
+  "parent": "oi-ridgeway",
+  "store": "company-a-store",
+  "city": "Tucson",
+  "state": "AZ",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "d08ceb04-4924-4fa7-8841-1beb46ddb2e6",
+    "role": "buyer"
+   },
+   {
+    "id": "e88d1ed5-e8d0-4163-a9ff-b2b3a9f61024",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oi-ridgeway-mesa",
+  "id": "e5004666-ef4d-49a2-80dc-18ffac9094a1",
+  "name": "Ridgeway Facility Services - Mesa",
+  "unitType": "Division",
+  "parent": "oi-ridgeway",
+  "store": "company-a-store",
+  "city": "Mesa",
+  "state": "AZ",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "0b509a6e-57ad-4357-895d-57f8ceacee5f",
+    "role": "buyer"
+   },
+   {
+    "id": "1546ba40-811b-42d7-9e6f-c7c97a47dd86",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oi-tallgrass-denver",
+  "id": "ccca510a-f420-47f9-adc6-7bbdf2379c1e",
+  "name": "Tallgrass Contractor Supply - Denver",
+  "unitType": "Division",
+  "parent": "oi-tallgrass",
+  "store": "KEYSTONE-B2B",
+  "city": "Denver",
+  "state": "CO",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "df341e0d-6c74-4a60-8654-f434c8a6fb80",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oi-tallgrass-omaha",
+  "id": "47f1a062-9182-4c6e-bc0d-a8f14ca2c2c7",
+  "name": "Tallgrass Contractor Supply - Omaha",
+  "unitType": "Division",
+  "parent": "oi-tallgrass",
+  "store": "KEYSTONE-B2B",
+  "city": "Omaha",
+  "state": "NE",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "0d2d9ced-598b-420f-bf43-b20136de7270",
+    "role": "buyer"
+   }
+  ]
+ },
+ {
+  "key": "oi-tallgrass-tampa",
+  "id": "2236a16a-5970-41a4-b363-48756e5d1a7c",
+  "name": "Tallgrass Contractor Supply - Tampa",
+  "unitType": "Division",
+  "parent": "oi-tallgrass",
+  "store": "KEYSTONE-B2B",
+  "city": "Tampa",
+  "state": "FL",
+  "contactEmail": null,
+  "buyerLimit": null,
+  "limitExceededBehavior": null,
+  "associates": [
+   {
+    "id": "394a2b04-e8e9-44a9-b249-1b8c91276659",
+    "role": "buyer"
+   }
+  ]
  }
 ]

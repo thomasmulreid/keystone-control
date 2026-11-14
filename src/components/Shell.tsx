@@ -4,6 +4,7 @@ import { liveSnapshot, customerAccounts } from "@/lib/snapshot";
 import { ScopeSwitcher } from "./ScopeSwitcher";
 import { longDate } from "@/lib/format";
 import { governanceMode, MODE_COPY } from "@/lib/governance";
+import { RefreshButton } from "./RefreshButton";
 
 /* ------------------------------------------------------------------
    The chrome.
@@ -76,6 +77,7 @@ export function Shell({
 
           <div className="ml-auto flex items-center gap-2.5 text-[11.5px] text-faint">
             <span className="hidden lg:inline">{snapshot.project}</span>
+            <RefreshButton label={`data ${snapshot.freshness.label}`} />
             <span
               className="rounded-full border border-line px-2 py-[3px]"
               title={MODE_COPY[governanceMode()].detail}
